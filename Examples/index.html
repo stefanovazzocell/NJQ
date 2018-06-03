@@ -19,7 +19,8 @@
 				Checks: <i style="color: #800">RED</i> is failing, <i style="color: #080">GREEN</i> is passing, and <i>BLACK</i> indicates that no test was performed.
 			</p>
 			<ul>
-				<li class="ready">ready(callback) <a class="nu" href="#ready">|></a></li>
+				<li class="c_ready">ready(callback) <a class="nu" href="#f_ready">|></a></li>
+				<li class="c_each">each(fn) <a class="nu" href="#f_each">|></a></li>
 			</ul>
 			<h4>Selecting element(s)</h4>
 			<p>
@@ -37,14 +38,34 @@
 			</div>
 			<h4>Page Ready</h4>
 			<p>
-				<b id="ready" class="ready">ready(callback)</b> calls the callback when the page is done loading.<br>
+				<b id="f_ready" class="c_ready">ready(callback)</b> calls the callback when the page is done loading.
 			</p>
 			<div class="code">
-				<p class="c cc">// Select by element</p>
+				<p class="c cc">// Show a message when the page is loaded</p>
 				<p class="c">$$().ready(function(){</p>
 				<p class="c">	alert('The page is loaded!');</p>
 				<p class="c">});</p>
 			</div>
+			<h4>For Each</h4>
+			<p>
+				<b id="f_each" class="c_each">each(fn)</b> calls a function on every selected element.<br>
+				The function should have two parameters:<br>
+				<ol>
+					<li>element - is the current selected element</li>
+					<li>index - is the index of the current element</li>
+				</ol>
+			</p>
+			<div class="code">
+				<p class="c cc">// Log a message for every 'p' element</p>
+				<p class="c">$$('p').each(function(element, index){</p>
+				<p class="c">	console.log(index + ' - A paragraph element!');</p>
+				<p class="c">});</p>
+			</div>
+			<!-- HIDDEN ELEMENTS FOR TESTING -->
+			<div class="test test_each"></div>
+			<div class="test test_each"></div>
+			<div class="test test_each"></div>
+			<!--------------------------------->
 		</main>
 		<script src="../Source/njq.js"></script>
 		<script type="text/javascript">
@@ -53,17 +74,35 @@
 			*/
 			// Changes color by class
 			function passing(testName) {
-				var toChange = document.getElementsByClassName(testName);
+				var toChange = document.getElementsByClassName('c_' + testName);
 				for (var i = toChange.length - 1; i >= 0; i--) {
-					toChange[i].style.color = "#080";
+					toChange[i].style.color = '#080';
+				}
+			}
+			function test(name, fn) {
+				try {
+					fn(name);
+				} catch(error) {
+					console.warn('Call to ' + name + ' throwed error:');
+					console.error(error);
 				}
 			}
 			/*
 			* Tests
 			*/
 			// > ready(callback)
-			$$().ready(function() {
-				passing('ready');
+			test('ready', function(name) {
+				$$().ready(function() {
+					passing(name);
+				});
+			});
+			// > each(fn)
+			test('each', function(name) {
+				var counter = 0;
+				$$('.test_each').each(function(element, index) {
+					counter++;
+				});
+				if (counter == 3) passing(name);
 			});
 		</script>
 	</body>
