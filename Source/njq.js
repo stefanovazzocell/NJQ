@@ -23,7 +23,12 @@
 		*/
 		ready: function (callback) {
 			if(document.readyState === "interactive" || document.readyState === "complete") {
-				callback()
+				try {
+					callback();
+				} catch(error) {
+					console.warn('ready(callback) - callback throwed error:');
+					console.error(error);
+				}
 			} else document.addEventListener("DOMContentLoaded", callback);
 		},
 		/*
@@ -35,8 +40,17 @@
 			if (this.selector.length > 1) {
 				Array.from(this.selector).forEach(fn);
 			} else if (this.selector.length == 1) {
-				fn(this.first(),0);
+				fn(this.selector[0],0);
 			}
+		},
+		/*
+		* log() - Prints every element that is currently selected on the console
+		*         NOTE: This is primarly for debugging purposes
+		*/
+		log: function () {
+			this.each(function (element, index) {
+				console.log('Element ' + index + ' is ' + element);
+			});
 		}
 	};
 })(this,document);
