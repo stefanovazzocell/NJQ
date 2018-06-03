@@ -16,7 +16,7 @@
 				In this page will show sample code for the NJQ Library.
 			</p>
 			<p>
-				Checks: <i style="color: #800">RED</i> is failing, <i style="color: #080">GREEN</i> is passing, and <i>BLACK</i> indicates that no test was performed.
+				Checks: <i style="color: #800">RED</i> is failing, <i style="color: #080">GREEN</i> is passing, and <i>BLACK</i> indicates that no automatic test was performed.
 			</p>
 			<ul>
 				<li class="c_ready">ready(callback) <a class="nu" href="#f_ready">|></a></li>
@@ -62,9 +62,10 @@
 				<p class="c">});</p>
 			</div>
 			<!-- HIDDEN ELEMENTS FOR TESTING -->
-			<div class="test test_each"></div>
-			<div class="test test_each"></div>
-			<div class="test test_each"></div>
+			<div class="test test_each_a okay"></div>
+			<div class="test test_each_a okay"></div>
+			<div class="test test_each_a okay"></div>
+			<div class="test test_each_b okay"></div>
 			<!--------------------------------->
 		</main>
 		<script src="../Source/njq.js"></script>
@@ -78,6 +79,9 @@
 				for (var i = toChange.length - 1; i >= 0; i--) {
 					toChange[i].style.color = '#080';
 				}
+			}
+			function isValid(element) {
+				return ((' ' + element.className + ' ').replace(/[\n\t]/g, ' ').indexOf(' okay ') > -1);
 			}
 			function test(name, fn) {
 				try {
@@ -98,11 +102,27 @@
 			});
 			// > each(fn)
 			test('each', function(name) {
-				var counter = 0;
-				$$('.test_each').each(function(element, index) {
-					counter++;
+				var counter_a = 0;
+				var counter_b = 0;
+				var counter_c = 0;
+				$$('.test_each_a').each(function(element, index) {
+					if (isValid(element)) {
+						counter_a++;
+					}
 				});
-				if (counter == 3) passing(name);
+				$$('.test_each_b').each(function(element, index) {
+					if (isValid(element)) {
+						counter_b++;
+					}
+				});
+				$$('.test_each_c').each(function(element, index) {
+					if (isValid(element)) {
+						counter_c++;
+					}
+				});
+				if (counter_a == 3 && counter_b == 1 && counter_c == 0) {
+					passing(name);
+				} else throw 'Incorrect counters value: A is ' + counter_a + ' expects 3, B is ' + counter_b  + ' expects 1, C is ' + counter_c + ' expects 0';
 			});
 		</script>
 	</body>
