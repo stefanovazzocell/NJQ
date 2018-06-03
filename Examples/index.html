@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="Page with examples for the NJQ plugin by Stefano Vazzoler">
+		<meta name="author" content="Stefano Vazzoler">
+		<title>NJQ ($$) - Examples</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<main>
+			<h2>NJQ - Test Page</h2>
+			<i>NoJQuery by Stefano Vazzoler (<a href="mailto:stefanovazzocell@gmail.com">stefanovazzocell@gmail.com</a>)</i>
+			<p>
+				In this page will show sample code for the NJQ Library.
+			</p>
+			<p>
+				Checks: <i style="color: #800">RED</i> is failing <i style="color: #080">GREEN</i> is passing.
+			</p>
+			<ul>
+				<li class="ready">ready(callback) <a class="nu" href="#ready">|></a></li>
+			</ul>
+			<h4>Selecting element(s)</h4>
+			<p>
+				Here are some examples of how an element can be selected
+			</p>
+			<div class="code">
+				<p class="c cc">// Select by element</p>
+				<p class="c">$$('html').html();</p>
+				<p class="c cc">// Select by id</p>
+				<p class="c">$$('#id').html();</p>
+				<p class="c cc">// Select by class</p>
+				<p class="c">$$('.class').html();</p>
+				<p class="c cc">// Select by reference</p>
+				<p class="c">$$(this).html();</p>
+			</div>
+			<h4>Page Ready</h4>
+			<p>
+				<b id="ready" class="ready">ready(callback)</b> calls the callback when the page is done loading.<br>
+			</p>
+			<div class="code">
+				<p class="c cc">// Select by element</p>
+				<p class="c">$$().ready(function(){</p>
+				<p class="c">	alert('The page is loaded!');</p>
+				<p class="c">});</p>
+			</div>
+		</main>
+		<script src="../Source/njq.js"></script>
+		<script type="text/javascript">
+			/*
+			*  Helpers
+			*/
+			// Changes color by class
+			function passing(testName) {
+				var toChange = document.getElementsByClassName(testName);
+				for (var i = toChange.length - 1; i >= 0; i--) {
+					toChange[i].style.color = "#080";
+				}
+			}
+			/*
+			* Tests
+			*/
+			// > ready(callback)
+			$$().ready(function() {
+				passing('ready');
+			});
+		</script>
+	</body>
+</html>
