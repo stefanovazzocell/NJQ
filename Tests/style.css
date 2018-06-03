@@ -1,0 +1,78 @@
+@font-face {
+	font-family: 'Fira Code';
+	src: url('https://cdn.rawgit.com/tonsky/FiraCode/1.205/distr/eot/FiraCode-Regular.eot');
+	src: url('https://cdn.rawgit.com/tonsky/FiraCode/1.205/distr/eot/FiraCode-Regular.eot') format('embedded-opentype'),
+		 url('https://cdn.rawgit.com/tonsky/FiraCode/1.205/distr/woff2/FiraCode-Regular.woff2') format('woff2'),
+		 url('https://cdn.rawgit.com/tonsky/FiraCode/1.205/distr/woff/FiraCode-Regular.woff') format('woff'),
+		 url('https://cdn.rawgit.com/tonsky/FiraCode/1.205/distr/ttf/FiraCode-Regular.ttf') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+}
+
+/* Setting up html + body */
+html, body {
+	margin: 0;
+	background-color: #444;
+	font-family: 'Fira Code';
+}
+
+/* Floating main */
+main {
+	display: block;
+	background-color: #ddd;
+	width: 80vw;
+	margin: 30px auto 30px auto;
+	padding: 20px 20px 30px 20px;
+	max-width: 800px;
+	box-shadow: 0 0 30px 0 #000;
+}
+
+/* Small screens fix */
+@media only screen and (max-width: 600px) {
+	main {
+		width: 100vw;
+		margin: 0;
+	}
+}
+
+/* Printers fix */
+@media only print {
+	html, body {
+		background-color: #fff;
+	}
+	main {
+		background-color: #fff;
+		max-width: none;
+	}
+}
+
+/* To show off some code */
+.code {
+	display: block;
+	background-color: #eee;
+	width: 80%;
+	margin: 5px auto 5px auto;
+	padding: 10px 5px 10px 5px;
+	line-height: 1.2em;
+	counter-reset: line;
+}
+
+.c {
+  margin: 0;
+}
+
+.cc {
+	font-style: italic;
+}
+
+.c:before {
+	font-size: 0.8em;
+	font-style: normal;
+	line-height: 1.6em;
+	border-right: 1px solid #ddd;
+	padding: 0 .5em;
+	margin-right: .5em;
+	counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+}
