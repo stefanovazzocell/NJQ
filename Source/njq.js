@@ -26,5 +26,17 @@
 				callback()
 			} else document.addEventListener("DOMContentLoaded", callback);
 		},
+		/*
+		* each(fn) - Calls a given function on every selected element
+		* 
+		* @param fn is a function with two parameters: an element and a index number
+		*/
+		each: function (fn) {
+			if (this.selector.length > 1) {
+				Array.from(this.selector).forEach(fn);
+			} else if (this.selector.length == 1) {
+				fn(this.first(),0);
+			}
+		}
 	};
 })(this,document);
