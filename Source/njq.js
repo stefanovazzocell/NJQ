@@ -37,6 +37,7 @@
 		* @param fn is a function with two parameters: an element and a index number
 		*/
 		each: function (fn) {
+			if (this.selector == null) return;
 			if (this.selector.length > 1) {
 				Array.from(this.selector).forEach(fn);
 			} else if (this.selector.length == 1) {
