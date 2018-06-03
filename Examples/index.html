@@ -21,6 +21,7 @@
 			<ul>
 				<li class="c_ready">ready(callback) <a class="nu" href="#f_ready">|></a></li>
 				<li class="c_each">each(fn) <a class="nu" href="#f_each">|></a></li>
+				<li class="c_log">log() <a class="nu" href="#f_log">|></a></li>
 			</ul>
 			<h4>Selecting element(s)</h4>
 			<p>
@@ -60,6 +61,14 @@
 				<p class="c">$$('p').each(function(element, index){</p>
 				<p class="c">	console.log(index + ' - A paragraph element!');</p>
 				<p class="c">});</p>
+			</div>
+			<h4>Log all</h4>
+			<p>
+				<b id="f_log" class="noCheck c_log">log()</b> prints every element that is currently selected on the console
+			</p>
+			<div class="code">
+				<p class="c cc">// Select every 'div' element and log it on the console</p>
+				<p class="c">$$('div').log();</p>
 			</div>
 			<!-- HIDDEN ELEMENTS FOR TESTING -->
 			<div class="test test_each_a okay"></div>
