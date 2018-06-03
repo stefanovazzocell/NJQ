@@ -16,6 +16,15 @@
 	};
 	window.$$ = $$;
 	$$.fn = $$.prototype = {
-		// Main functionality goes here
+		/*
+		* ready(callback) - Executes callback when document is loaded
+		* 
+		* @param callback is a function that will be called when DOM Loaded
+		*/
+		ready: function (callback) {
+			if(document.readyState === "interactive" || document.readyState === "complete") {
+				callback()
+			} else document.addEventListener("DOMContentLoaded", callback);
+		},
 	};
 })(this,document);
