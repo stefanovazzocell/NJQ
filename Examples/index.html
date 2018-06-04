@@ -24,6 +24,7 @@
 				<li class="c_log noCheck">log() <a class="nu" href="#f_log">|></a></li>
 				<li class="c_first">first() <a class="nu" href="#f_first">|></a></li>
 				<li class="c_select">select() <a class="nu" href="#f_select">|></a></li>
+				<li class="c_html">html(newHtml) <a class="nu" href="#f_html">|></a></li>
 			</ul>
 			<h4>Selecting element(s)</h4>
 			<p>
@@ -74,7 +75,7 @@
 			</div>
 			<h4>First Element</h4>
 			<p>
-				<b id="f_first" class="c_first">first()</b> Returns the first selected element.<br>
+				<b id="f_first" class="c_first">first()</b> Returns the first selected element.
 			</p>
 			<div class="code">
 				<p class="c cc">// Returns the first div element</p>
@@ -82,11 +83,25 @@
 			</div>
 			<h4>Select/Click Element</h4>
 			<p>
-				<b id="f_select" class="c_select">select()</b> Simulates an user selecting an element.<br>
+				<b id="f_select" class="c_select">select()</b> Simulates an user selecting an element.
 			</p>
 			<div class="code">
 				<p class="c cc">// Equivalent to user clicking element</p>
 				<p class="c">$$('#clickme').select();</p>
+			</div>
+			<h4>Get or Set inner HTML of element</h4>
+			<p>
+				<b id="f_html" class="c_html">html(newHtml)</b> gets or sets the inner html of a function<br>
+				Has an optional newHtml parameter. This parameter should be a string containing the new inner html to set to each selected element.<br>
+				If no parameter is passed, it returns a string with the inner html of the first element.
+			</p>
+			<div class="code">
+				<p class="c cc">// Returns the inner html of the first .readme</p>
+				<p class="c">$$('.readme').htmk();</p>
+				<p class="c cc">/* Writes 'Hello World!' to every selected</p>
+				<p class="c cc">*  paragraph element</p>
+				<p class="c cc">*/</p>
+				<p class="c">$$('p').html('Hello World!');</p>
 			</div>
 			<!-- HIDDEN ELEMENTS FOR TESTING -->
 			<div class="test test_each_a okay"></div>
@@ -97,7 +112,13 @@
 			<div class="test test_first_a notOkay"></div>
 			<div class="test test_first_b notOkay"></div>
 			<div class="test test_first_b okay"></div>
-			<div class="test test_select" onclick="passing('select')"></div>
+			<div class="test test_select okay" onclick="passing('select')"></div>
+			<div class="test test_select notOkay"></div>
+			<div class="test test_html_read okay"><b>Read</b> me!</div>
+			<div class="test test_html_read notOkay"><b>Don't</b> read me!</div>
+			<div class="test test_html_write test_html_write_a okay">Write on me</div>
+			<div class="test test_html_write test_html_write_b okay">and me</div>
+			<div class="test test_html_write test_html_write_c okay"></div>
 			<!--------------------------------->
 		</main>
 		<script src="../Source/njq.js"></script>
@@ -166,7 +187,21 @@
 			});
 			// > select()
 			test('select', function(name) {
-				$$('.test_select').select();
+				$$('.test_select').select(); // Select the element
+			});
+			// > html(newHtml)
+			test('html', function(name) {
+				if ($$('.test_html_read').html() != "<b>Read</b> me!") {
+					throw 'Did not find the correct element';
+				} else {
+					$$('.test_html_write').html("ok");
+					var checkme = document.getElementsByClassName('test_html_write');
+					if (checkme[0].innerHTML == "ok" && checkme[1].innerHTML == "ok" && checkme[2].innerHTML == "ok") {
+						passing(name);
+					} else {
+						throw 'Did not write to the correct element or to all the elements';
+					}
+				}
 			});
 		</script>
 	</body>
