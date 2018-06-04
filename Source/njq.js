@@ -76,6 +76,20 @@
 		*/
 		select: function () {
 			this.first().click(); // Click on the first element
+		},
+		/*
+		* html(newHtml) - Sets OR returns the inner HTML
+		*                 IF parameter passed, changes the inner html of each element selected
+		*                 ELSE returns the inner HTML of the first element selected, if any
+		* 
+		* @param  newHtml (optinal) new html for elements
+		* @return html if no parameter is passed, returns first element's html
+		*/
+		html: function (newHtml) {
+			if (newHtml == undefined) return this.first().innerHTML; // Returns the innerHTML for the first element
+			this.each(function (element) {	
+				element.innerHTML = newHtml; // Set the inner html given parameter
+			});
 		}
 	};
 })(this,document);
