@@ -70,6 +70,12 @@
 				}
 			}
 			return toReturn;
+		},
+		/*
+		* select() - Simulates an user click on the element
+		*/
+		select: function () {
+			this.first().click(); // Click on the first element
 		}
 	};
 })(this,document);
