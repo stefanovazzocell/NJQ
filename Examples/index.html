@@ -10,7 +10,7 @@
 	</head>
 	<body>
 		<main>
-			<h2>NJQ - Test Page</h2>
+			<h2>NJQ - Examples Page</h2>
 			<i>NoJQuery by Stefano Vazzoler (<a href="mailto:stefanovazzocell@gmail.com">stefanovazzocell@gmail.com</a>)</i>
 			<p>
 				In this page will show sample code for the NJQ Library.
@@ -21,7 +21,8 @@
 			<ul>
 				<li class="c_ready">ready(callback) <a class="nu" href="#f_ready">|></a></li>
 				<li class="c_each">each(fn) <a class="nu" href="#f_each">|></a></li>
-				<li class="c_log">log() <a class="nu" href="#f_log">|></a></li>
+				<li class="c_log noCheck">log() <a class="nu" href="#f_log">|></a></li>
+				<li class="c_first">first() <a class="nu" href="#f_first">|></a></li>
 			</ul>
 			<h4>Selecting element(s)</h4>
 			<p>
@@ -70,11 +71,23 @@
 				<p class="c cc">// Select every 'div' element and log it on the console</p>
 				<p class="c">$$('div').log();</p>
 			</div>
+			<h4>First Element</h4>
+			<p>
+				<b id="f_first" class="c_first">first()</b> Returns the first selected element.<br>
+			</p>
+			<div class="code">
+				<p class="c cc">// Returns the first div element</p>
+				<p class="c">$$('div').first();</p>
+			</div>
 			<!-- HIDDEN ELEMENTS FOR TESTING -->
 			<div class="test test_each_a okay"></div>
 			<div class="test test_each_a okay"></div>
 			<div class="test test_each_a okay"></div>
 			<div class="test test_each_b okay"></div>
+			<div class="test test_first_a okay"></div>
+			<div class="test test_first_a notOkay"></div>
+			<div class="test test_first_b notOkay"></div>
+			<div class="test test_first_b okay"></div>
 			<!--------------------------------->
 		</main>
 		<script src="../Source/njq.js"></script>
@@ -132,6 +145,14 @@
 				if (counter_a == 3 && counter_b == 1 && counter_c == 0) {
 					passing(name);
 				} else throw 'Incorrect counters value: A is ' + counter_a + ' expects 3, B is ' + counter_b  + ' expects 1, C is ' + counter_c + ' expects 0';
+			});
+			// > first()
+			test('first', function(name) {
+				if (isValid($$('.test_first_a').first())) {
+					if (!isValid($$('.test_first_b').first())) {
+						passing(name);
+					} else throw 'It found the incorrect element';
+				} else throw 'Does not find element';
 			});
 		</script>
 	</body>
