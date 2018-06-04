@@ -23,6 +23,7 @@
 				<li class="c_each">each(fn) <a class="nu" href="#f_each">|></a></li>
 				<li class="c_log noCheck">log() <a class="nu" href="#f_log">|></a></li>
 				<li class="c_first">first() <a class="nu" href="#f_first">|></a></li>
+				<li class="c_select">select() <a class="nu" href="#f_select">|></a></li>
 			</ul>
 			<h4>Selecting element(s)</h4>
 			<p>
@@ -79,6 +80,14 @@
 				<p class="c cc">// Returns the first div element</p>
 				<p class="c">$$('div').first();</p>
 			</div>
+			<h4>Select/Click Element</h4>
+			<p>
+				<b id="f_select" class="c_select">select()</b> Simulates an user selecting an element.<br>
+			</p>
+			<div class="code">
+				<p class="c cc">// Equivalent to user clicking element</p>
+				<p class="c">$$('#clickme').select();</p>
+			</div>
 			<!-- HIDDEN ELEMENTS FOR TESTING -->
 			<div class="test test_each_a okay"></div>
 			<div class="test test_each_a okay"></div>
@@ -88,6 +97,7 @@
 			<div class="test test_first_a notOkay"></div>
 			<div class="test test_first_b notOkay"></div>
 			<div class="test test_first_b okay"></div>
+			<div class="test test_select" onclick="passing('select')"></div>
 			<!--------------------------------->
 		</main>
 		<script src="../Source/njq.js"></script>
@@ -153,6 +163,10 @@
 						passing(name);
 					} else throw 'It found the incorrect element';
 				} else throw 'Does not find element';
+			});
+			// > select()
+			test('select', function(name) {
+				$$('.test_select').select();
 			});
 		</script>
 	</body>
