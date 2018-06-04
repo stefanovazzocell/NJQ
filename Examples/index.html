@@ -25,6 +25,7 @@
 				<li class="c_first">first() <a class="nu" href="#f_first">|></a></li>
 				<li class="c_select">select() <a class="nu" href="#f_select">|></a></li>
 				<li class="c_html">html(newHtml) <a class="nu" href="#f_html">|></a></li>
+				<li class="c_addClass">addClass(newClass) <a class="nu" href="#f_addClass">|></a></li>
 			</ul>
 			<h4>Selecting element(s)</h4>
 			<p>
@@ -55,8 +56,8 @@
 				<b id="f_each" class="c_each">each(fn)</b> calls a function on every selected element.<br>
 				The function should have two parameters:<br>
 				<ol>
-					<li>element - is the current selected element</li>
-					<li>index - is the index of the current element</li>
+					<li class="noCheck">element - is the current selected element</li>
+					<li class="noCheck">index - is the index of the current element</li>
 				</ol>
 			</p>
 			<div class="code">
@@ -103,6 +104,14 @@
 				<p class="c cc">*/</p>
 				<p class="c">$$('p').html('Hello World!');</p>
 			</div>
+			<h4>Select/Click Element</h4>
+			<p>
+				<b id="f_addClass" class="c_addClass">addClass(newClass)</b> Simulates an user selecting an element.
+			</p>
+			<div class="code">
+				<p class="c cc">// Adds the class 'expanded' to each instance of .menu</p>
+				<p class="c">$$('.menu').addClass('expanded');</p>
+			</div>
 			<!-- HIDDEN ELEMENTS FOR TESTING -->
 			<div class="test test_each_a okay"></div>
 			<div class="test test_each_a okay"></div>
@@ -119,6 +128,8 @@
 			<div class="test test_html_write test_html_write_a okay">Write on me</div>
 			<div class="test test_html_write test_html_write_b okay">and me</div>
 			<div class="test test_html_write test_html_write_c okay"></div>
+			<div id="test_addClass_a" class="test test_addClass"></div>
+			<div id="test_addClass_b" class="test test_addClass"></div>
 			<!--------------------------------->
 		</main>
 		<script src="../Source/njq.js"></script>
@@ -202,6 +213,13 @@
 						throw 'Did not write to the correct element or to all the elements';
 					}
 				}
+			});
+			// > addClass(newClass)
+			test('addClass', function(name) {
+				$$('.test_addClass').addClass('okay'); // Select the element
+				if (isValid(document.getElementById('test_addClass_a')) && isValid(document.getElementById('test_addClass_b'))) {
+					passing(name);
+				} else throw 'Cannot find the okay class after addClass';
 			});
 		</script>
 	</body>
