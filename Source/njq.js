@@ -12,7 +12,7 @@
 			return new $$(selector); // initialize it with the given selector
 		if (typeof selector == 'string') { // If selector has string
 			this.selector = document.querySelectorAll(selector); // Attempt to find it
-		} else this.selector = selector; // Else, just assume it to be a NodeList
+		} else this.selector = selector; // Else, just assume it to be a valid obj
 	};
 	window.$$ = $$;
 	$$.fn = $$.prototype = {
@@ -24,8 +24,8 @@
 		ready: function (callback) {
 			if(document.readyState === "interactive" || document.readyState === "complete") {
 				try {
-					callback();
-				} catch(error) {
+					callback(); // Try calling the callback
+				} catch(error) { // Otherwise log error
 					console.warn('ready(callback) - callback throwed error:');
 					console.error(error);
 				}
@@ -37,11 +37,14 @@
 		* @param fn is a function with two parameters: an element and a index number
 		*/
 		each: function (fn) {
-			if (this.selector == null) return;
-			if (this.selector.length > 1) {
-				Array.from(this.selector).forEach(fn);
-			} else if (this.selector.length == 1) {
-				fn(this.selector[0],0);
+			if (this.selector == null) return; // If null stop execution
+			try {
+				Array.from(this.selector).forEach(fn); // Assume is an NodeList
+			} catch (error) {
+				/* This is a bug, doesn't work yet... Hopefully I can fix it soon
+				*  the goal is to be able to pass objs like document.getElementByID('')
+				*/
+				fn(this.selector,0);
 			}
 		},
 		/*
@@ -49,8 +52,8 @@
 		*         NOTE: This is primarly for debugging purposes
 		*/
 		log: function () {
-			this.each(function (element, index) {
-				console.log('Element ' + index + ' is ' + element);
+			this.each(function (element, index) { // Loop through every element
+				console.log('Element ' + index + ' is ' + element); // Log the element
 			});
 		}
 	};
