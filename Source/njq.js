@@ -90,6 +90,16 @@
 			this.each(function (element) {	
 				element.innerHTML = newHtml; // Set the inner html given parameter
 			});
+		},
+		/*
+		* addClass(newClass) - Adds a given class to every selected element
+		* 
+		* @param  class string containing the name of the class to add
+		*/
+		addClass: function (newClass) {
+			this.each(function (element) { // Go to each element
+				element.classList.add(newClass); // Add the given class to the element
+			});
 		}
 	};
 })(this,document);
