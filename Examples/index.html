@@ -27,6 +27,7 @@
 				<li class="c_html">html(newHtml) <a class="nu" href="#f_html">|></a></li>
 				<li class="c_addClass">addClass(newClass) <a class="nu" href="#f_addClass">|></a></li>
 				<li class="c_removeClass">removeClass(oldClass) <a class="nu" href="#f_removeClass">|></a></li>
+				<li class="c_toggleClass">toggleClass(className) <a class="nu" href="#f_toggleClass">|></a></li>
 			</ul>
 			<h4>Selecting element(s)</h4>
 			<p>
@@ -121,6 +122,14 @@
 				<p class="c cc">// Removes the class 'expanded' to each instance of .menu</p>
 				<p class="c">$$('.menu').removeClass('expanded');</p>
 			</div>
+			<h4>Toggle a class</h4>
+			<p>
+				<b id="f_toggleClass" class="c_toggleClass">toggleClass(className)</b> Toggles the given class from all elements selected
+			</p>
+			<div class="code">
+				<p class="c cc">// Toggles the class 'expanded' to each instance of .menu (on/off)</p>
+				<p class="c">$$('.menu').toggleClass('expanded');</p>
+			</div>
 			<!-- HIDDEN ELEMENTS FOR TESTING -->
 			<div class="test test_each_a okay"></div>
 			<div class="test test_each_a okay"></div>
@@ -141,6 +150,9 @@
 			<div id="test_addClass_b" class="test test_addClass"></div>
 			<div id="test_removeClass_a" class="test test_removeClass okay"></div>
 			<div id="test_removeClass_b" class="test test_removeClass okay"></div>
+			<div id="test_toggleClass_a" class="test test_toggleClass okay"></div>
+			<div id="test_toggleClass_b" class="test test_toggleClass okay"></div>
+			<div id="test_toggleClass_c" class="test test_toggleClass"></div>
 			<!--------------------------------->
 		</main>
 		<script src="../Source/njq.js"></script>
@@ -239,6 +251,18 @@
 					throw 'Finds the okay class after removeClass';
 				} else passing(name);
 			});
+			// > toggleClass(className)
+			test('toggleClass', function(name) {
+				$$('.test_toggleClass').toggleClass('okay'); // Select the element
+				if (isValid(document.getElementById('test_toggleClass_a')) || isValid(document.getElementById('test_toggleClass_b')) || !isValid(document.getElementById('test_toggleClass_c'))) {
+					throw 'Checks fail for toggleClass';
+				} else passing(name);
+			});
+			/*
+			<div id="test_toggleClass_a" class="test test_toggleClass okay"></div>
+			<div id="test_toggleClass_b" class="test test_toggleClass okay"></div>
+			<div class="test test_toggleClass_c"></div>
+			*/
 		</script>
 	</body>
 </html>
