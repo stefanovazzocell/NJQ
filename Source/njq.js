@@ -100,6 +100,16 @@
 			this.each(function (element) { // Go to each element
 				element.classList.add(newClass); // Add the given class to the element
 			});
+		},
+		/*
+		* removeClass(oldClass) - Removes a given class to every selected element
+		* 
+		* @param  class string containing the name of the class to remove
+		*/
+		removeClass: function (oldClass) {
+			this.each(function (element) { // Go to every selected element
+				element.classList.remove(oldClass); // Remove the given class
+			});
 		}
 	};
 })(this,document);
