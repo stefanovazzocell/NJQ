@@ -110,6 +110,16 @@
 			this.each(function (element) { // Go to every selected element
 				element.classList.remove(oldClass); // Remove the given class
 			});
+		},
+		/*
+		* toggleClass(className) - Toggles a given class to every selected element
+		* 
+		* @param  class string containing the name of the class to toggle
+		*/
+		toggleClass: function (className) {
+			this.each(function (element) {
+				element.classList.toggle(className);
+			});
 		}
 	};
 })(this,document);
