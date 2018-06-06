@@ -26,6 +26,7 @@
 				<li class="c_select">select() <a class="nu" href="#f_select">|></a></li>
 				<li class="c_html">html(newHtml) <a class="nu" href="#f_html">|></a></li>
 				<li class="c_addClass">addClass(newClass) <a class="nu" href="#f_addClass">|></a></li>
+				<li class="c_removeClass">removeClass(oldClass) <a class="nu" href="#f_removeClass">|></a></li>
 			</ul>
 			<h4>Selecting element(s)</h4>
 			<p>
@@ -104,13 +105,21 @@
 				<p class="c cc">*/</p>
 				<p class="c">$$('p').html('Hello World!');</p>
 			</div>
-			<h4>Select/Click Element</h4>
+			<h4>Add a class</h4>
 			<p>
 				<b id="f_addClass" class="c_addClass">addClass(newClass)</b> Simulates an user selecting an element.
 			</p>
 			<div class="code">
 				<p class="c cc">// Adds the class 'expanded' to each instance of .menu</p>
 				<p class="c">$$('.menu').addClass('expanded');</p>
+			</div>
+			<h4>Remove a class</h4>
+			<p>
+				<b id="f_removeClass" class="c_removeClass">removeClass(oldClass)</b> Removes the given class from all elements selected
+			</p>
+			<div class="code">
+				<p class="c cc">// Removes the class 'expanded' to each instance of .menu</p>
+				<p class="c">$$('.menu').removeClass('expanded');</p>
 			</div>
 			<!-- HIDDEN ELEMENTS FOR TESTING -->
 			<div class="test test_each_a okay"></div>
@@ -130,6 +139,8 @@
 			<div class="test test_html_write test_html_write_c okay"></div>
 			<div id="test_addClass_a" class="test test_addClass"></div>
 			<div id="test_addClass_b" class="test test_addClass"></div>
+			<div id="test_removeClass_a" class="test test_removeClass okay"></div>
+			<div id="test_removeClass_b" class="test test_removeClass okay"></div>
 			<!--------------------------------->
 		</main>
 		<script src="../Source/njq.js"></script>
@@ -220,6 +231,13 @@
 				if (isValid(document.getElementById('test_addClass_a')) && isValid(document.getElementById('test_addClass_b'))) {
 					passing(name);
 				} else throw 'Cannot find the okay class after addClass';
+			});
+			// > removeClass(newClass)
+			test('removeClass', function(name) {
+				$$('.test_removeClass').removeClass('okay'); // Select the element
+				if (isValid(document.getElementById('test_removeClass_a')) || isValid(document.getElementById('test_removeClass_b'))) {
+					throw 'Finds the okay class after removeClass';
+				} else passing(name);
 			});
 		</script>
 	</body>
