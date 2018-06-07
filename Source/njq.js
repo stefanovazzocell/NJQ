@@ -117,8 +117,23 @@
 		* @param  class string containing the name of the class to toggle
 		*/
 		toggleClass: function (className) {
-			this.each(function (element) {
-				element.classList.toggle(className);
+			this.each(function (element) { // For each element
+				element.classList.toggle(className); // Toggle the class
+			});
+		},
+		/*
+		* style(property, newValue) - Sets OR returns the given style property
+		*                 IF newValue passed, changes all the instances to the new newValue
+		*                 ELSE returns the velue for the given style property of the first element
+		* 
+		* @param  property is a style property
+		* @param  newValue (optinal) new value to appy
+		* @return html if no newValue parameter, returns first element's property's value
+		*/
+		style: function (property, newValue) {
+			if (newValue == undefined) return this.first().style[property]; // If no newValue, reurn the property
+			this.each(function (element) { // Otherwise, 
+				element.style[property] = newValue; // Set the new value
 			});
 		}
 	};
