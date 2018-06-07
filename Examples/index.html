@@ -28,6 +28,7 @@
 				<li class="c_addClass">addClass(newClass) <a class="nu" href="#f_addClass">|></a></li>
 				<li class="c_removeClass">removeClass(oldClass) <a class="nu" href="#f_removeClass">|></a></li>
 				<li class="c_toggleClass">toggleClass(className) <a class="nu" href="#f_toggleClass">|></a></li>
+				<li class="c_style">style(property, newValue) <a class="nu" href="#f_style">|></a></li>
 			</ul>
 			<h4>Selecting element(s)</h4>
 			<p>
@@ -100,7 +101,7 @@
 			</p>
 			<div class="code">
 				<p class="c cc">// Returns the inner html of the first .readme</p>
-				<p class="c">$$('.readme').htmk();</p>
+				<p class="c">$$('.readme').html();</p>
 				<p class="c cc">/* Writes 'Hello World!' to every selected</p>
 				<p class="c cc">*  paragraph element</p>
 				<p class="c cc">*/</p>
@@ -130,6 +131,19 @@
 				<p class="c cc">// Toggles the class 'expanded' to each instance of .menu (on/off)</p>
 				<p class="c">$$('.menu').toggleClass('expanded');</p>
 			</div>
+			<h4>Gets or Sets style properties</h4>
+			<p>
+				<b id="f_style" class="c_style">style(property,newValue)</b> gets or sets a given css property<br>
+				Has an property parameter which indicates the property to look at.<br>
+				Has an Optional newValue parameter. This parameter should be a string containing the new value to set to the css property<br>
+				If no parameter is passed, it returns a string with the value of the requested css property of the first element.
+			</p>
+			<div class="code">
+				<p class="c cc">// Hides all the .loading elements by setting 'display: none'</p>
+				<p class="c">$$('.loading').style('display', 'none');</p>
+				<p class="c cc">// Returns the height property of the #div3</p>
+				<p class="c">$$('#div3').style('height');</p>
+			</div>
 			<!-- HIDDEN ELEMENTS FOR TESTING -->
 			<div class="test test_each_a okay"></div>
 			<div class="test test_each_a okay"></div>
@@ -153,6 +167,9 @@
 			<div id="test_toggleClass_a" class="test test_toggleClass okay"></div>
 			<div id="test_toggleClass_b" class="test test_toggleClass okay"></div>
 			<div id="test_toggleClass_c" class="test test_toggleClass"></div>
+			<div class="test test_style_read okay" style="max-width: 11px"></div>
+			<div class="test test_style_read notOkay" style="max-width: 10px"></div>
+			<div id="test_style_write" class="test test_style_write"></div>
 			<!--------------------------------->
 		</main>
 		<script src="../Source/njq.js"></script>
@@ -258,11 +275,15 @@
 					throw 'Checks fail for toggleClass';
 				} else passing(name);
 			});
-			/*
-			<div id="test_toggleClass_a" class="test test_toggleClass okay"></div>
-			<div id="test_toggleClass_b" class="test test_toggleClass okay"></div>
-			<div class="test test_toggleClass_c"></div>
-			*/
+			// > style(property, newValue)
+			test('style', function(name) {
+				var readTest = $$('.test_style_read').style('max-width');
+				$$('.test_style_write').style('max-width', '13px');
+				var writeTest = document.getElementById('test_style_write').style['max-width'];
+				if (writeTest != '13px') throw 'Write test for style returned ' + writeTest;
+				if (readTest != '11px') throw 'Read test for style returned' + readTest;
+				passing(name);
+			});
 		</script>
 	</body>
 </html>
