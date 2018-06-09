@@ -128,7 +128,7 @@
 		* 
 		* @param  property is a style property
 		* @param  newValue (optinal) new value to appy
-		* @return html if no newValue parameter, returns first element's property's value
+		* @return string if no newValue parameter, returns first element's property's value
 		*/
 		style: function (property, newValue) {
 			if (newValue == undefined) return this.first().style[property]; // If no newValue, reurn the property
@@ -141,6 +141,7 @@
 		*                 or changes all the selected elements values to the given
 		* 
 		* @param  newValue (optional) string with the new value's name
+		* @return string if no new value given, returns cirrent value
 		*/
 		val: function (newValue) {
 			if (newValue == undefined) return this.first().value;
@@ -148,5 +149,18 @@
 				element.value = newValue;
 			});
 		}
+		/*
+		* prop(property, newValue) - Gets the requested attribute of the first selected element
+		*                 or changes all the selected elements values to the given
+		* 
+		* @param  newValue (optional) string with the new attribute's value
+		* @return string with the current attribute if no newValue set
+		*/
+		prop: function (property, newValue) {
+			if (newValue == undefined) return this.first().getAttribute(property);
+			this.each(function (element) {property
+				element.setAttribute(property, newValue);
+			});
+		},
 	};
 })(this,document);
