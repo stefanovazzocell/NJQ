@@ -29,6 +29,7 @@
 				<li class="c_removeClass">removeClass(oldClass) <a class="nu" href="#f_removeClass">|></a></li>
 				<li class="c_toggleClass">toggleClass(className) <a class="nu" href="#f_toggleClass">|></a></li>
 				<li class="c_style">style(property, newValue) <a class="nu" href="#f_style">|></a></li>
+				<li class="c_val">val(newValue) <a class="nu" href="#f_val">|></a></li>
 			</ul>
 			<h4>Selecting element(s)</h4>
 			<p>
@@ -95,7 +96,7 @@
 			</div>
 			<h4>Get or Set inner HTML of element</h4>
 			<p>
-				<b id="f_html" class="c_html">html(newHtml)</b> gets or sets the inner html of a function<br>
+				<b id="f_html" class="c_html">html(newHtml)</b> gets or sets the inner html of an element(s)<br>
 				Has an optional newHtml parameter. This parameter should be a string containing the new inner html to set to each selected element.<br>
 				If no parameter is passed, it returns a string with the inner html of the first element.
 			</p>
@@ -144,6 +145,18 @@
 				<p class="c cc">// Returns the height property of the #div3</p>
 				<p class="c">$$('#div3').style('height');</p>
 			</div>
+			<h4>Get or Set value of an element</h4>
+			<p>
+				<b id="f_html" class="c_html">val(newValue)</b> gets or sets the value of an element(s)<br>
+				Has an optional newValue parameter. This parameter should be a string containing the new value to set to each selected element.<br>
+				If no parameter is passed, it returns a string with the value of the first element.
+			</p>
+			<div class="code">
+				<p class="c cc">// Returns the value of #username</p>
+				<p class="c">$$('#username').val();</p>
+				<p class="c cc">// Sets the username as 'Bob'</p>
+				<p class="c">$$('#username').val('Bob');</p>
+			</div>
 			<!-- HIDDEN ELEMENTS FOR TESTING -->
 			<div class="test test_each_a okay"></div>
 			<div class="test test_each_a okay"></div>
@@ -170,6 +183,10 @@
 			<div class="test test_style_read okay" style="max-width: 11px"></div>
 			<div class="test test_style_read notOkay" style="max-width: 10px"></div>
 			<div id="test_style_write" class="test test_style_write"></div>
+			<input type="text" class="test test_val_read okay" value="myName">
+			<input type="text" class="test test_val_write okay">
+			<input type="text" class="test test_val_write okay">
+			<input type="text" class="test test_val_write okay">
 			<!--------------------------------->
 		</main>
 		<script src="../Source/njq.js"></script>
@@ -283,6 +300,20 @@
 				if (writeTest != '13px') throw 'Write test for style returned ' + writeTest;
 				if (readTest != '11px') throw 'Read test for style returned' + readTest;
 				passing(name);
+			});
+			// > val(newValue)
+			test('val', function(name) {
+				if ($$('.test_val_read').val() != "myName") {
+					throw 'Did not find the correct element';
+				} else {
+					$$('.test_val_write').val("ok");
+					var checkme = document.getElementsByClassName('test_val_write');
+					if (checkme[0].innerHTML == "ok" && checkme[1].innerHTML == "ok" && checkme[2].innerHTML == "ok") {
+						passing(name);
+					} else {
+						throw 'Did not write to the correct element or to all the elements';
+					}
+				}
 			});
 		</script>
 	</body>
