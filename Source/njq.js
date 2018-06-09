@@ -135,6 +135,18 @@
 			this.each(function (element) { // Otherwise, 
 				element.style[property] = newValue; // Set the new value
 			});
+		},
+		/*
+		* val(newValue) - Gets the value of the first selected element
+		*                 or changes all the selected elements values to the given
+		* 
+		* @param  newValue (optional) string with the new value's name
+		*/
+		val: function (newValue) {
+			if (newValue == undefined) return this.first().value;
+			this.each(function (element) {
+				element.value = newValue;
+			});
 		}
 	};
 })(this,document);
