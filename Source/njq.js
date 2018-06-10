@@ -148,7 +148,7 @@
 			this.each(function (element) {
 				element.value = newValue;
 			});
-		}
+		},
 		/*
 		* prop(property, newValue) - Gets the requested attribute of the first selected element
 		*                 or changes all the selected elements values to the given
@@ -161,6 +161,6 @@
 			this.each(function (element) {property
 				element.setAttribute(property, newValue);
 			});
-		},
+		}
 	};
 })(this,document);
