@@ -161,6 +161,17 @@
 			this.each(function (element) {property
 				element.setAttribute(property, newValue);
 			});
+		},
+		/*
+		* event(event, callback) - Sets a callback for an event
+		* 
+		* @param  event string that specificies which event to attach che callback to
+		* @param  callback function to call back
+		*/
+		event: function (event, callback) {
+			this.each(function (element) {
+				element.addEventListener(event, callback);
+			});
 		}
 	};
 })(this,document);
