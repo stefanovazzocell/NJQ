@@ -173,5 +173,13 @@
 				element.addEventListener(event, callback);
 			});
 		}
+		/*
+		* onClick(callback) - Sets a click callback
+		* 
+		* @param  callback function to callback
+		*/
+		onClick: function (callback) {
+			this.event('click', callback);
+		},
 	};
 })(this,document);
