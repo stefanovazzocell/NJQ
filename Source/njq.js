@@ -172,7 +172,7 @@
 			this.each(function (element) {
 				element.addEventListener(event, callback);
 			});
-		}
+		},
 		/*
 		* onClick(callback) - Sets a click callback
 		* 
@@ -180,6 +180,6 @@
 		*/
 		onClick: function (callback) {
 			this.event('click', callback);
-		},
+		}
 	};
 })(this,document);
