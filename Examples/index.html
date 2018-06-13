@@ -32,6 +32,7 @@
 				<li class="c_val">val(newValue) <a class="nu" href="#f_val">|></a></li>
 				<li class="c_prop">prop(property,newValue) <a class="nu" href="#f_prop">|></a></li>
 				<li class="c_event">event(event, callback) <a class="nu" href="#f_event">|></a></li>
+				<li class="c_onclick	">onClick(callback) <a class="nu" href="#f_onclick	">|></a></li>
 			</ul>
 			<h4>Selecting element(s)</h4>
 			<p>
@@ -173,7 +174,7 @@
 			</div>
 			<h4>Add an event listener with a callback</h4>
 			<p>
-				<b id="f_event" class="c_event">event(event,callback)</b> set's a callback for an event on the current element<br>
+				<b id="f_event" class="c_event">event(event,callback)</b> set's a callback for an event on the current set of elements<br>
 				Callback is the function to callback and the event is a string name of the callback<br>
 				A list of callbacks can be found on <a target="_blank" href="https://www.w3schools.com/jsref/dom_obj_event.asp">w3schools' site</a>
 			</p>
@@ -181,6 +182,16 @@
 				<p class="c cc">// Returns a message on right click on the page</p>
 				<p class="c">$$('html').event('contextmenu',function () {</p>
 				<p class="c">	alert('Annoying message'); });</p>
+			</div>
+			<h4>Click event</h4>
+			<p>
+				<b id="f_onclick" class="c_onclick">onClick(callback)</b> set's a click callback for an event on the current set of elements<br>
+				Callback is the function to callback.
+			</p>
+			<div class="code">
+				<p class="c cc">// Returns a message on right click on the page</p>
+				<p class="c">$$('button').onClick(function () {</p>
+				<p class="c">	alert('Button clicked!'); });</p>
 			</div>
 			<!-- HIDDEN ELEMENTS FOR TESTING -->
 			<div class="test test_each_a okay"></div>
@@ -217,6 +228,7 @@
 			<div class="test test_prop_write okay" isthisatest="fghj"></div>
 			<div class="test test_prop_write okay" isthisatest="zxcv"></div>
 			<div id="test_event" class="test test_event okay" ></div>
+			<div id="test_onclick" class="test test_onclick okay"></div>
 			<!--------------------------------->
 		</main>
 		<script src="../Source/njq.js"></script>
@@ -362,10 +374,18 @@
 			// > event(event,callback)
 			test('event', function(name) {
 				$$('#test_event').event('click', function() {
-					console.log('Event tester onresize');
+					console.log('Event tester onClick');
 					passing('event');
 				});
 				document.getElementById('test_event').click();
+			});
+			// > onClick(callback)
+			test('event', function(name) {
+				$$('#test_onclick').onClick(function() {
+					console.log('onClick tester');
+					passing('onclick');
+				});
+				document.getElementById('test_onclick').click();
 			});
 		</script>
 	</body>
