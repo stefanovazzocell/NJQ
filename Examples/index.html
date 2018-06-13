@@ -11,13 +11,13 @@
 	<body>
 		<main>
 			<h2>NJQ - Examples Page</h2>
-			<i>NoJQuery by Stefano Vazzoler (<a href="mailto:stefanovazzocell@gmail.com">stefanovazzocell@gmail.com</a>)</i>
+			<i>NoJQuery by Stefano Vazzoler (<a href="mailto:stefanovazzocell@gmail.com">stefanovazzocell@gmail.com</a>)</i><br><br>
 			<p>
 				In this page will show sample code for the NJQ Library.
 			</p>
 			<p>
 				Checks: <i style="color: #800">RED</i> is failing, <i style="color: #080">GREEN</i> is passing, and <i>BLACK</i> indicates that no automatic test was performed.
-			</p>
+			</p><br>
 			<ul>
 				<li class="c_ready">ready(callback) <a class="nu" href="#f_ready">|></a></li>
 				<li class="c_each">each(fn) <a class="nu" href="#f_each">|></a></li>
@@ -32,8 +32,8 @@
 				<li class="c_val">val(newValue) <a class="nu" href="#f_val">|></a></li>
 				<li class="c_prop">prop(property,newValue) <a class="nu" href="#f_prop">|></a></li>
 				<li class="c_event">event(event, callback) <a class="nu" href="#f_event">|></a></li>
-				<li class="c_onclick	">onClick(callback) <a class="nu" href="#f_onclick	">|></a></li>
-			</ul>
+				<li class="c_onclick">onClick(callback) <a class="nu" href="#f_onclick	">|></a></li>
+			</ul><br><br><br>
 			<h4>Selecting element(s)</h4>
 			<p>
 				Here are some examples of how an element can be selected
@@ -47,7 +47,7 @@
 				<p class="c">$$('.class').html();</p>
 				<p class="c cc">// Select by reference</p>
 				<p class="c">$$(this).html();</p>
-			</div>
+			</div><br><br><br>
 			<h4>Page Ready</h4>
 			<p>
 				<b id="f_ready" class="c_ready">ready(callback)</b> calls the callback when the page is done loading.
@@ -57,7 +57,7 @@
 				<p class="c">$$().ready(function(){</p>
 				<p class="c">	alert('The page is loaded!');</p>
 				<p class="c">});</p>
-			</div>
+			</div><br><br><br>
 			<h4>For Each</h4>
 			<p>
 				<b id="f_each" class="c_each">each(fn)</b> calls a function on every selected element.<br>
@@ -72,7 +72,7 @@
 				<p class="c">$$('p').each(function(element, index){</p>
 				<p class="c">	console.log(index + ' - A paragraph element!');</p>
 				<p class="c">});</p>
-			</div>
+			</div><br><br><br>
 			<h4>Log all</h4>
 			<p>
 				<b id="f_log" class="noCheck c_log">log()</b> prints every element that is currently selected on the console
@@ -80,7 +80,7 @@
 			<div class="code">
 				<p class="c cc">// Select every 'div' element and log it on the console</p>
 				<p class="c">$$('div').log();</p>
-			</div>
+			</div><br><br><br>
 			<h4>First Element</h4>
 			<p>
 				<b id="f_first" class="c_first">first()</b> Returns the first selected element.
@@ -88,7 +88,7 @@
 			<div class="code">
 				<p class="c cc">// Returns the first div element</p>
 				<p class="c">$$('div').first();</p>
-			</div>
+			</div><br><br><br>
 			<h4>Select/Click Element</h4>
 			<p>
 				<b id="f_select" class="c_select">select()</b> Simulates an user selecting an element.
@@ -96,7 +96,7 @@
 			<div class="code">
 				<p class="c cc">// Equivalent to user clicking element</p>
 				<p class="c">$$('#clickme').select();</p>
-			</div>
+			</div><br><br><br>
 			<h4>Get or Set inner HTML of element</h4>
 			<p>
 				<b id="f_html" class="c_html">html(newHtml)</b> gets or sets the inner html of an element(s)<br>
@@ -110,7 +110,7 @@
 				<p class="c cc">*  paragraph element</p>
 				<p class="c cc">*/</p>
 				<p class="c">$$('p').html('Hello World!');</p>
-			</div>
+			</div><br><br><br>
 			<h4>Add a class</h4>
 			<p>
 				<b id="f_addClass" class="c_addClass">addClass(newClass)</b> Simulates an user selecting an element.
@@ -118,7 +118,7 @@
 			<div class="code">
 				<p class="c cc">// Adds the class 'expanded' to each instance of .menu</p>
 				<p class="c">$$('.menu').addClass('expanded');</p>
-			</div>
+			</div><br><br><br>
 			<h4>Remove a class</h4>
 			<p>
 				<b id="f_removeClass" class="c_removeClass">removeClass(oldClass)</b> Removes the given class from all elements selected
@@ -126,7 +126,7 @@
 			<div class="code">
 				<p class="c cc">// Removes the class 'expanded' to each instance of .menu</p>
 				<p class="c">$$('.menu').removeClass('expanded');</p>
-			</div>
+			</div><br><br><br>
 			<h4>Toggle a class</h4>
 			<p>
 				<b id="f_toggleClass" class="c_toggleClass">toggleClass(className)</b> Toggles the given class from all elements selected
@@ -134,7 +134,7 @@
 			<div class="code">
 				<p class="c cc">// Toggles the class 'expanded' to each instance of .menu (on/off)</p>
 				<p class="c">$$('.menu').toggleClass('expanded');</p>
-			</div>
+			</div><br><br><br>
 			<h4>Gets or Sets style properties</h4>
 			<p>
 				<b id="f_style" class="c_style">style(property,newValue)</b> gets or sets a given css property<br>
@@ -147,7 +147,7 @@
 				<p class="c">$$('.loading').style('display', 'none');</p>
 				<p class="c cc">// Returns the height property of the #div3</p>
 				<p class="c">$$('#div3').style('height');</p>
-			</div>
+			</div><br><br><br>
 			<h4>Get or Set value of an element</h4>
 			<p>
 				<b id="f_val" class="c_val">val(newValue)</b> gets or sets the value of an element(s)<br>
@@ -159,7 +159,7 @@
 				<p class="c">$$('#username').val();</p>
 				<p class="c cc">// Sets the username as 'Bob'</p>
 				<p class="c">$$('#username').val('Bob');</p>
-			</div>
+			</div><br><br><br>
 			<h4>Get or Set a property of an element</h4>
 			<p>
 				<b id="f_prop" class="c_prop">prop(property,newValue)</b> gets or sets the property of an element(s)<br>
@@ -171,7 +171,7 @@
 				<p class="c">$$('input').prop('name');</p>
 				<p class="c cc">// Sets the username's name as 'user'</p>
 				<p class="c">$$('#username').prop('name','user');</p>
-			</div>
+			</div><br><br><br>
 			<h4>Add an event listener with a callback</h4>
 			<p>
 				<b id="f_event" class="c_event">event(event,callback)</b> set's a callback for an event on the current set of elements<br>
@@ -182,7 +182,7 @@
 				<p class="c cc">// Returns a message on right click on the page</p>
 				<p class="c">$$('html').event('contextmenu',function () {</p>
 				<p class="c">	alert('Annoying message'); });</p>
-			</div>
+			</div><br><br><br>
 			<h4>Click event</h4>
 			<p>
 				<b id="f_onclick" class="c_onclick">onClick(callback)</b> set's a click callback for an event on the current set of elements<br>
@@ -192,7 +192,7 @@
 				<p class="c cc">// Returns a message on right click on the page</p>
 				<p class="c">$$('button').onClick(function () {</p>
 				<p class="c">	alert('Button clicked!'); });</p>
-			</div>
+			</div><br><br><br>
 			<!-- HIDDEN ELEMENTS FOR TESTING -->
 			<div class="test test_each_a okay"></div>
 			<div class="test test_each_a okay"></div>
