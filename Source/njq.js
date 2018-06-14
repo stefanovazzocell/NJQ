@@ -144,9 +144,9 @@
 		* @return string if no new value given, returns cirrent value
 		*/
 		val: function (newValue) {
-			if (newValue == undefined) return this.first().value;
+			if (newValue == undefined) return this.first().value; // Get the value of the first element
 			this.each(function (element) {
-				element.value = newValue;
+				element.value = newValue; // Sets the vealue of every element selected
 			});
 		},
 		/*
@@ -157,9 +157,9 @@
 		* @return string with the current attribute if no newValue set
 		*/
 		prop: function (property, newValue) {
-			if (newValue == undefined) return this.first().getAttribute(property);
+			if (newValue == undefined) return this.first().getAttribute(property); // Gents the prop of first
 			this.each(function (element) {property
-				element.setAttribute(property, newValue);
+				element.setAttribute(property, newValue); // Sets the property of every element
 			});
 		},
 		/*
@@ -169,8 +169,8 @@
 		* @param  callback function to call back
 		*/
 		event: function (event, callback) {
-			this.each(function (element) {
-				element.addEventListener(event, callback);
+			this.each(function (element) { // For every element
+				element.addEventListener(event, callback); // Sets the listener and passes the callback
 			});
 		},
 		/*
@@ -179,7 +179,8 @@
 		* @param  callback function to callback
 		*/
 		onClick: function (callback) {
-			this.event('click', callback);
-		}
+			this.event('click', callback); // Sets a click callback
+		},
+
 	};
 })(this,document);
