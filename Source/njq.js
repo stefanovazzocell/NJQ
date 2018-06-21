@@ -194,11 +194,31 @@
 			this.ajax(url, 'POST', data, onSuccess, onFail); // Make ajax POST request
 		},
 		/*
+		* get(url, data, onSuccess, onFail) - Performs a GET request
+		* 
+		* @param  url string the url that is being called
+		* @param  data (optional) object containing the data of the get request (passed as parameters)
+		* @param  onSuccess(response,xhr) (optional) function called if success
+		* @param  onFail(xhr) (optional) function function called in case of failure
+		*/
+		get: function (url, data={}, onSuccess=function(){}, onFail=function(){console.error("NJQ POST Error");}) {
+			var par = '';
+			if (data != {}) { // If any parameter is passed
+				par = '?';
+				var out = new Array();
+				for(var key in data){ // Add all data in an array
+					out.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
+				}
+				par += out.join('&'); // Store the data in the url
+			}
+			this.ajax(url + par, 'GET', {}, onSuccess, onFail); // Make ajax GET request
+		},
+		/*
 		* ajax(url, data, onSuccess, onFail) - Performs a request
 		* 
 		* @param  url string the url that is being called
 		* @param  type (optional) string specifies the type of the request
-		* @param  data (optional) object containing the body of the post request
+		* @param  data (optional) object containing the body of the ajax request
 		* @param  onSuccess(response,xhr) (optional) function called if success
 		* @param  onFail(xhr) (optional) function function called in case of failure
 		* @param  contentType (optional) string specifies the content type header
