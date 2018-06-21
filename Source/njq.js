@@ -247,6 +247,19 @@
 			} else {
 				xhr.send(); // Else, just send the request
 			}
+		},
+		/*
+		* encodeDataForURI(data) - Encodes the data for URI
+		* 
+		* @param  data (optional) object containing the data to encode
+		* @return string with the data object encoded for URI
+		*/
+		encodeDataForURI: function (data={}) {
+			var out = new Array();
+			for(var key in data){ // Add all data in an array
+				out.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
+			}
+			return out.join('&'); // Return the value by joining it
 		}
 	};
 })(this,document);
