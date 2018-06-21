@@ -203,13 +203,8 @@
 		*/
 		get: function (url, data={}, onSuccess=function(){}, onFail=function(){console.error('NJQ POST Error');}) {
 			var par = '';
-			if (data != {}) { // If any parameter is passed
-				par = '?';
-				var out = new Array();
-				for(var key in data){ // Add all data in an array
-					out.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
-				}
-				par += out.join('&'); // Store the data in the url
+			if (data != {}) { // If any data is passed
+				par = '?' + encodeDataForURI(data); // Add to par after encoding it
 			}
 			this.ajax(url + par, 'GET', {}, onSuccess, onFail); // Make ajax GET request
 		},
@@ -238,11 +233,7 @@
 			};
 			if (data != {}) { // If there is any data to pass in the body
 				xhr.send(function () { // Send request
-					var out = new Array();
-					for(var key in data){ // Add all data in an array
-						out.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
-					}
-					return encodeURI(out.join('&')); // Send the encoded URI back
+					return encodeDataForURI(data); // Send the encoded URI back
 				});
 			} else {
 				xhr.send(); // Else, just send the request
@@ -259,7 +250,7 @@
 			for(var key in data){ // Add all data in an array
 				out.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
 			}
-			return out.join('&'); // Return the value by joining it
+			return encodeURI(out.join('&')); // Return the value by joining it
 		}
 	};
 })(this,document);
