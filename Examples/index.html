@@ -203,16 +203,16 @@
 				onFail(xhr) (optional) function function called in case of failure. Optionally access xhr, the original XMLHttpRequest<br>
 			</p>
 			<div class="code">
-				<p class="c cc">// Make a request to 'api.ipify.org' to get an user's ip</p>https://api.ipify.org?format=json
-				<p class="c">$$.post('https://api.ipify.org?format=json',</p>
-				<p class="c">        {},</p>
-				<p class="c">        function (response) {</p>
-				<p class="c">            var ipdata = JSON.parse(reponse);</p>
-				<p class="c">            alert("Your ip is " + ipdata['ip']);</p>
-				<p class="c">        },</p>
-				<p class="c">        function (xhr) {</p>
-				<p class="c">            alert("An error occurred. Response code: " + xhr.status);</p>
-				<p class="c">        });</p>
+				<p class="c cc">// Make a request to a sample site to get an user's ip</p>
+				<p class="c">$$().post('https://example.com/getip/?format=json',</p>
+				<p class="c">          {},</p>
+				<p class="c">          function (response) {</p>
+				<p class="c">              var ipdata = JSON.parse(reponse);</p>
+				<p class="c">              alert("Your ip is " + ipdata['ip']);</p>
+				<p class="c">          },</p>
+				<p class="c">          function (xhr) {</p>
+				<p class="c">              alert("An error occurred. Response code: " + xhr.status);</p>
+				<p class="c">          });</p>
 			</div><br><br><br>
 			<!-- HIDDEN ELEMENTS FOR TESTING -->
 			<div class="test test_each_a okay"></div>
