@@ -184,14 +184,13 @@
 		},
 		/*
 		* post(url, data, onSuccess, onFail) - Performs a POST request
-		*                 or changes all the selected elements values to the given
 		* 
 		* @param  url string the url that is being called
 		* @param  data (optional) object containing the body of the post request
 		* @param  onSuccess(response,xhr) (optional) function called if success
 		* @param  onFail(xhr) (optional) function function called in case of failure
 		*/
-		post: function (url, data={}, onSuccess=function(){}, onFail=function(){console.error("[GoUI] POST Error");}) {
+		post: function (url, data={}, onSuccess=function(){}, onFail=function(){console.error("NJQ POST Error");}) {
 			var xhr = new XMLHttpRequest();
 			xhr.open('POST', url);
 			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -207,6 +206,41 @@
 				}
 				return encodeURI(out.join('&'));
 			});
+		},
+		/*
+		* ajax(url, data, onSuccess, onFail) - Performs a request
+		* 
+		* @param  url string the url that is being called
+		* @param  type (optional) specifies the type of the request
+		* @param  data (optional) object containing the body of the post request
+		* @param  onSuccess(response,xhr) (optional) function called if success
+		* @param  onFail(xhr) (optional) function function called in case of failure
+		* @param  contentType (optional) specifies the content type header
+		*/
+		ajax: function (url, type='GET', data={}, onSuccess=function(){}, onFail=function(){console.error('NJQ Ajax Error');}, contentType='') {
+			var xhr = new XMLHttpRequest(); // Initialize a XMLHttpRequest
+			if (type='GET' && data != {}) type='POST'; // Try to guess the type
+			xhr.open(type, url); // Prepare the request
+			// Try to guess the content type header
+			if (contentType == '' && type == 'POST') contentType = 'application/x-www-form-urlencoded';
+			// Set the header if necessary
+			if (contentType != '') xhr.setRequestHeader('Content-Type', contentType);
+			xhr.onload = function() { // Prepares the request callbacks
+				if (xhr.status === 200) { // If successful
+					onSuccess(xhr.responseText, xhr); // Callback to onSuccess
+				} else onFail(xhr); // else callback to onFail
+			};
+			if (data != {}) { // If there is any data to pass in the body
+				xhr.send(function () { // Send request
+					var out = new Array();
+					for(var key in data){ // Add all data in an array
+						out.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
+					}
+					return encodeURI(out.join('&')); // Send the encoded URI back
+				});
+			} else {
+				xhr.send(); // Else, just send the request
+			}
 		}
 	};
 })(this,document);
