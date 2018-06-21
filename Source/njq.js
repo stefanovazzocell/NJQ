@@ -203,8 +203,8 @@
 		*/
 		get: function (url, data={}, onSuccess=function(){}, onFail=function(){console.error('NJQ POST Error');}) {
 			var par = '';
-			if (data != {}) { // If any data is passed
-				par = '?' + encodeDataForURI(data); // Add to par after encoding it
+			if (!this.isEmptyObject(data)) { // If any data is passed
+				par = '?' + this.encodeDataForURI(data); // Add to par after encoding it
 			}
 			this.ajax(url + par, 'GET', {}, onSuccess, onFail); // Make ajax GET request
 		},
@@ -220,7 +220,7 @@
 		*/
 		ajax: function (url, type='GET', data={}, onSuccess=function(){}, onFail=function(){console.error('NJQ Ajax Error');}, contentType='') {
 			var xhr = new XMLHttpRequest(); // Initialize a XMLHttpRequest
-			if (type='GET' && data != {}) type='POST'; // Try to guess the type
+			if (type='GET' && !this.isEmptyObject(data)) type='POST'; // Try to guess the type
 			xhr.open(type, url); // Prepare the request
 			// Try to guess the content type header
 			if (contentType == '' && type == 'POST') contentType = 'application/x-www-form-urlencoded';
@@ -233,7 +233,7 @@
 			};
 			if (data != {}) { // If there is any data to pass in the body
 				xhr.send(function () { // Send request
-					return encodeDataForURI(data); // Send the encoded URI back
+					return this.encodeDataForURI(data); // Send the encoded URI back
 				});
 			} else {
 				xhr.send(); // Else, just send the request
@@ -251,6 +251,18 @@
 				out.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
 			}
 			return encodeURI(out.join('&')); // Return the value by joining it
+		},
+		/*
+		* isEmptyObject(obj) - Checks if an object is empty
+		* 
+		* @param  obj object containing the data to encode
+		* @return boolean true if is empty and false if has element
+		*/
+		isEmptyObject: function (obj) {
+			for (var key in obj) {
+				return false; // If any key is found
+			}
+			return true;
 		}
 	};
 })(this,document);
