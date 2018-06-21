@@ -191,31 +191,17 @@
 		* @param  onFail(xhr) (optional) function function called in case of failure
 		*/
 		post: function (url, data={}, onSuccess=function(){}, onFail=function(){console.error("NJQ POST Error");}) {
-			var xhr = new XMLHttpRequest();
-			xhr.open('POST', url);
-			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-			xhr.onload = function() {
-				if (xhr.status === 200) {
-					onSuccess(xhr.responseText, xhr);
-				} else onFail(xhr);
-			};
-			xhr.send(function () {
-				var out = new Array();
-				for(var key in data){
-					out.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
-				}
-				return encodeURI(out.join('&'));
-			});
+			this.ajax(url, 'POST', data, onSuccess, onFail); // Make ajax POST request
 		},
 		/*
 		* ajax(url, data, onSuccess, onFail) - Performs a request
 		* 
 		* @param  url string the url that is being called
-		* @param  type (optional) specifies the type of the request
+		* @param  type (optional) string specifies the type of the request
 		* @param  data (optional) object containing the body of the post request
 		* @param  onSuccess(response,xhr) (optional) function called if success
 		* @param  onFail(xhr) (optional) function function called in case of failure
-		* @param  contentType (optional) specifies the content type header
+		* @param  contentType (optional) string specifies the content type header
 		*/
 		ajax: function (url, type='GET', data={}, onSuccess=function(){}, onFail=function(){console.error('NJQ Ajax Error');}, contentType='') {
 			var xhr = new XMLHttpRequest(); // Initialize a XMLHttpRequest
