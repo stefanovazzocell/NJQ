@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /*
 * NJQ (Version 0.0.0)
@@ -23,14 +23,14 @@
 		* @param callback is a function that will be called when DOM Loaded
 		*/
 		ready: function (callback) {
-			if(document.readyState === "interactive" || document.readyState === "complete") {
+			if(document.readyState === 'interactive' || document.readyState === 'complete') {
 				try {
 					callback(); // Try calling the callback
 				} catch(error) { // Otherwise log error
 					console.warn('$$.ready(callback) - callback throwed error:');
 					console.error(error);
 				}
-			} else document.addEventListener("DOMContentLoaded", callback);
+			} else document.addEventListener('DOMContentLoaded', callback);
 		},
 		/*
 		* each(fn) - Calls a given function on every selected element
@@ -190,7 +190,7 @@
 		* @param  onSuccess(response,xhr) (optional) function called if success
 		* @param  onFail(xhr) (optional) function function called in case of failure
 		*/
-		post: function (url, data={}, onSuccess=function(){}, onFail=function(){console.error("NJQ POST Error");}) {
+		post: function (url, data={}, onSuccess=function(){}, onFail=function(){console.error('NJQ POST Error');}) {
 			this.ajax(url, 'POST', data, onSuccess, onFail); // Make ajax POST request
 		},
 		/*
@@ -201,7 +201,7 @@
 		* @param  onSuccess(response,xhr) (optional) function called if success
 		* @param  onFail(xhr) (optional) function function called in case of failure
 		*/
-		get: function (url, data={}, onSuccess=function(){}, onFail=function(){console.error("NJQ POST Error");}) {
+		get: function (url, data={}, onSuccess=function(){}, onFail=function(){console.error('NJQ POST Error');}) {
 			var par = '';
 			if (data != {}) { // If any parameter is passed
 				par = '?';
