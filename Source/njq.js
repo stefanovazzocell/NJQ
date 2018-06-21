@@ -15,6 +15,7 @@
 		} else this.selector = selector; // Else, just assume it to be a valid obj
 	};
 	window.$$ = $$;
+	window.$$.post = $$().post;
 	$$.fn = $$.prototype = {
 		/*
 		* ready(callback) - Executes callback when document is loaded
@@ -181,6 +182,31 @@
 		onClick: function (callback) {
 			this.event('click', callback); // Sets a click callback
 		},
-
+		/*
+		* post(url, data, onSuccess, onFail) - Performs a POST request
+		*                 or changes all the selected elements values to the given
+		* 
+		* @param  url string the url that is being called
+		* @param  data (optional) object containing the body of the post request
+		* @param  onSuccess(response,xhr) (optional) function called if success
+		* @param  onFail(xhr) (optional) function function called in case of failure
+		*/
+		post: function (url, data={}, onSuccess=function(){}, onFail=function(){console.error("[GoUI] POST Error");}) {
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST', url);
+			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			xhr.onload = function() {
+				if (xhr.status === 200) {
+					onSuccess(xhr.responseText, xhr);
+				} else onFail(xhr);
+			};
+			xhr.send(function () {
+				var out = new Array();
+				for(var key in data){
+					out.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
+				}
+				return encodeURI(out.join('&'));
+			});
+		}
 	};
 })(this,document);
