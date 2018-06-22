@@ -35,6 +35,7 @@
 				<li class="c_onclick">onClick(callback) <a class="nu" href="#f_onclick">|></a></li>
 				<li class="c_post">post(url,data,onSuccess,onFail) <a class="nu" href="#f_post">|></a></li>
 				<li class="c_get">get(url,data,onSuccess,onFail) <a class="nu" href="#f_get">|></a></li>
+				<li class="c_ajax noCheck">ajax(url,type,data,onSuccess,onFail,contentType) <a class="nu" href="#f_ajax">|></a></li>
 			</ul><br><br><br>
 			<h4>Selecting element(s)</h4>
 			<p>
@@ -201,7 +202,7 @@
 				url string the url that is being called<br>
 				data (optional) object containing the body of the post request<br>
 				onSuccess(response,xhr) (optional) function called if success. Optional response is the string with the body of the returned data, and xhr is to access the original XMLHttpRequest<br>
-				onFail(xhr) (optional) function function called in case of failure. Optionally access xhr, the original XMLHttpRequest<br>
+				onFail(xhr) (optional) function function called in case of failure. Optionally access xhr, the original XMLHttpRequest
 			</p>
 			<div class="code">
 				<p class="c cc">// Make a request to a sample site to get an user's ip</p>
@@ -221,7 +222,7 @@
 				url string the url that is being called<br>
 				data (optional) object containing the parameters of the get request to be passed with the url<br>
 				onSuccess(response,xhr) (optional) function called if success. Optional response is the string with the body of the returned data, and xhr is to access the original XMLHttpRequest<br>
-				onFail(xhr) (optional) function function called in case of failure. Optionally access xhr, the original XMLHttpRequest<br>
+				onFail(xhr) (optional) function function called in case of failure. Optionally access xhr, the original XMLHttpRequest
 			</p>
 			<div class="code">
 				<p class="c cc">// Make a request to a sample site to get an user's ip</p>
@@ -234,6 +235,29 @@
 				<p class="c">         function (xhr) {</p>
 				<p class="c">             alert("An error occurred. Response code: " + xhr.status);</p>
 				<p class="c">         });</p>
+			</div><br><br><br>
+			<h4>Ajax Custom Request</h4>
+			<p>
+				<b id="f_ajax" class="c_ajax noCheck">ajax(url,type,data,onSuccess,onFail,contentType)</b> makes an asynchronous ajax request to a given url.<br>
+				url string the url that is being called<br>
+				type (optional) string specifies the type of the request<br>
+				data (optional) object containing the parameters of the get request to be passed with the url<br>
+				onSuccess(response,xhr) (optional) function called if success. Optional response is the string with the body of the returned data, and xhr is to access the original XMLHttpRequest<br>
+				onFail(xhr) (optional) function function called in case of failure. Optionally access xhr, the original XMLHttpRequest<br>
+				contentType (optional) string specifies the content type header
+			</p>
+			<div class="code">
+				<p class="c cc">// Make a request to a sample site to get an user's ip</p>
+				<p class="c">$$().ajax('https://example.com/getip/',</p>
+				<p class="c">          'POST',</p>
+				<p class="c">          { format: 'json' },</p>
+				<p class="c">          function (response) {</p>
+				<p class="c">              var ipdata = JSON.parse(reponse);</p>
+				<p class="c">              alert("Your ip is " + ipdata['ip']);</p>
+				<p class="c">          },</p>
+				<p class="c">          function (xhr) {</p>
+				<p class="c">              alert("An error occurred. Response code: " + xhr.status);</p>
+				<p class="c">          });</p>
 			</div><br><br><br>
 			<!-- HIDDEN ELEMENTS FOR TESTING -->
 			<div class="test test_each_a okay"></div>
