@@ -512,21 +512,17 @@
 			});
 			// > get(url,data,onSuccess,onFail)
 			test('get', function(name) {
-				noCheck(name); // Declare no test performed
-
-				/*
-				$$().get('https://yourdomain.com/test/',
-					{ test: 'true'}, // https://yourdomain.com/test/?test=true
+				$$().get('test.json',
+					{},
 					function (response) {
 						var parsedJSON = JSON.parse(reponse);
 						if (parsedJSON['test'] == 'passed') {
 							passing(name);
-						}
+						} else throw 'Reponse is ' + response;
 					},
 					function (xhr) {
 						throw 'An error occurred. Response code: ' + xhr.status;
 					});
-				*/
 			});
 			// > encodeDataForURI(data)
 			test('encodeDataForURI', function(name) {
