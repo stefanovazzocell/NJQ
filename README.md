@@ -19,6 +19,7 @@ Here's a handy chart:
 | njq_p_na_###.min.js | ✗    | ✗     |
 
 _* if you need the `log()` operator (for testing) use this version_
+
 _* if you need any ajax request (ajax(), post(), and get()) use this version_
 
 
