@@ -208,21 +208,21 @@
 			this.ajax(url + par, 'GET', {}, onSuccess, onFail); // Make ajax GET request
 		},
 		/*
-		* ajax(url, type, data, onSuccess, onFail, contentType) - Performs a request
+		* ajax(url, method, data, onSuccess, onFail, contentType) - Performs a request
 		* 
 		* @param  url string the url that is being called
-		* @param  type (optional) string specifies the type of the request
+		* @param  method (optional) string specifies the method of the request
 		* @param  data (optional) object containing the body of the ajax request
 		* @param  onSuccess(response,xhr) (optional) function called if success
 		* @param  onFail(xhr) (optional) function function called in case of failure
 		* @param  contentType (optional) string specifies the content type header
 		*/
-		ajax: function (url, type='GET', data={}, onSuccess=function(){}, onFail=function(){console.error('NJQ Ajax Error');}, contentType='') {
+		ajax: function (url, method='GET', data={}, onSuccess=function(){}, onFail=function(){console.error('NJQ Ajax Error');}, contentType='') {
 			var xhr = new XMLHttpRequest(); // Initialize a XMLHttpRequest
-			if (type='GET' && !this.isEmptyObject(data)) type='POST'; // Try to guess the type
-			xhr.open(type, url); // Prepare the request
+			if (method='GET' && !this.isEmptyObject(data)) method='POST'; // Try to guess the method
+			xhr.open(method, url); // Prepare the request
 			// Try to guess the content type header
-			if (contentType == '' && type == 'POST') contentType = 'application/x-www-form-urlencoded';
+			if (contentType == '' && method == 'POST') contentType = 'application/x-www-form-urlencoded';
 			// Set the header if necessary
 			if (contentType != '') xhr.setRequestHeader('Content-Type', contentType);
 			xhr.onload = function() { // Prepares the request callbacks
