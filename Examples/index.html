@@ -454,6 +454,24 @@
 					});
 				*/
 			});
+			// > get(url,data,onSuccess,onFail)
+			test('get', function(name) {
+				noCheck(name); // Declare no test performed
+
+				/*
+				$$().get('https://yourdomain.com/test/',
+					{ test: 'true'}, // https://yourdomain.com/test/?test=true
+					function (response) {
+						var parsedJSON = JSON.parse(reponse);
+						if (parsedJSON['test'] == 'passed') {
+							passing(name);
+						}
+					},
+					function (xhr) {
+						alert("An error occurred. Response code: " + xhr.status);
+					});
+				*/
+			});
 		</script>
 	</body>
 </html>
