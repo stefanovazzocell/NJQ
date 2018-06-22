@@ -515,7 +515,7 @@
 				$$().get('test.json',
 					{},
 					function (response) {
-						var parsedJSON = JSON.parse(reponse);
+						var parsedJSON = JSON.parse(response);
 						if (parsedJSON['test'] == 'passed') {
 							passing(name);
 						} else throw 'Reponse is ' + response;
