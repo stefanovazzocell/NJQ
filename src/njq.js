@@ -219,7 +219,7 @@
 		*/
 		ajax: function (url, method='GET', data={}, onSuccess=function(){}, onFail=function(){console.error('NJQ Ajax Error');}, contentType='') {
 			var xhr = new XMLHttpRequest(); // Initialize a XMLHttpRequest
-			if (method='GET' && !this.isEmptyObject(data)) method='POST'; // Try to guess the method
+			if (method == 'GET' && !this.isEmptyObject(data)) method='POST'; // Try to guess the method
 			xhr.open(method, url); // Prepare the request
 			// Try to guess the content type header
 			if (contentType == '' && method == 'POST') contentType = 'application/x-www-form-urlencoded';
