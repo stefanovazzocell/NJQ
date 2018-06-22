@@ -208,7 +208,7 @@
 			this.ajax(url + par, 'GET', {}, onSuccess, onFail); // Make ajax GET request
 		},
 		/*
-		* ajax(url, data, onSuccess, onFail) - Performs a request
+		* ajax(url, type, data, onSuccess, onFail, contentType) - Performs a request
 		* 
 		* @param  url string the url that is being called
 		* @param  type (optional) string specifies the type of the request
