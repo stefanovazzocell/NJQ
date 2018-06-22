@@ -37,6 +37,7 @@
 				<li class="c_get">get(url,data,onSuccess,onFail) <a class="nu" href="#f_get">|></a></li>
 				<li class="c_ajax noCheck">ajax(url,type,data,onSuccess,onFail,contentType) <a class="nu" href="#f_ajax">|></a></li>
 				<li class="c_encodeDataForURI">encodeDataForURI(data) <a class="nu" href="#f_encodeDataForURI">|></a></li>
+				<li class="c_isEmptyObject">isEmptyObject(obj) <a class="nu" href="#f_isEmptyObject">|></a></li>
 			</ul><br><br><br>
 			<h4>Selecting element(s)</h4>
 			<p>
@@ -275,6 +276,23 @@
 				<p class="c cc">// Prints 'example.com/?todo=newuser'</p>
 				<p class="c">console.log(u);</p>
 			</div><br><br><br>
+			<h4>Encode object for ajax request</h4>
+			<p>
+				<b id="f_isEmptyObject" class="c_isEmptyObject">isEmptyObject(obj)</b> checks if a javascript objecct is empty.<br>
+				obj object containing the data to check
+			</p>
+			<div class="code">
+				<p class="c cc">// This first example will not do anything</p>
+				<p class="c">var obj = {};</p>
+				<p class="c">if (! $$().isEmptyObject(obj)) {</p>
+				<p class="c">  // Do something</p>
+				<p class="c">}</p>
+				<p class="c cc">// This first example will do anything</p>
+				<p class="c">obj = { user: 'alice' };</p>
+				<p class="c">if (! $$().isEmptyObject(obj)) {</p>
+				<p class="c">  // Do something</p>
+				<p class="c">}</p>
+			</div><br><br><br>
 			<!-- HIDDEN ELEMENTS FOR TESTING -->
 			<div class="test test_each_a okay"></div>
 			<div class="test test_each_a okay"></div>
@@ -390,12 +408,12 @@
 			});
 			// > html(newHtml)
 			test('html', function(name) {
-				if ($$('.test_html_read').html() != "<b>Read</b> me!") {
+				if ($$('.test_html_read').html() != '<b>Read</b> me!') {
 					throw 'Did not find the correct element';
 				} else {
-					$$('.test_html_write').html("ok");
+					$$('.test_html_write').html('ok');
 					var checkme = document.getElementsByClassName('test_html_write');
-					if (checkme[0].innerHTML == "ok" && checkme[1].innerHTML == "ok" && checkme[2].innerHTML == "ok") {
+					if (checkme[0].innerHTML == 'ok' && checkme[1].innerHTML == 'ok' && checkme[2].innerHTML == 'ok') {
 						passing(name);
 					} else {
 						throw 'Did not write to the correct element or to all the elements';
@@ -434,12 +452,12 @@
 			});
 			// > val(newValue)
 			test('val', function(name) {
-				if ($$('.test_val_read').val() != "myName") {
+				if ($$('.test_val_read').val() != 'myName') {
 					throw 'Did not find the correct element';
 				} else {
-					$$('.test_val_write').val("ok");
+					$$('.test_val_write').val('ok');
 					var checkme = document.getElementsByClassName('test_val_write');
-					if (checkme[0].value == "ok" && checkme[1].value == "ok" && checkme[2].value == "ok") {
+					if (checkme[0].value == 'ok' && checkme[1].value == 'ok' && checkme[2].value == 'ok') {
 						passing(name);
 					} else {
 						throw 'Did not write to the correct element or to all the elements';
@@ -448,12 +466,12 @@
 			});
 			// > prop(property,newValue)
 			test('prop', function(name) {
-				if ($$('.test_prop_read').prop('isthisatest') != "yes!") {
+				if ($$('.test_prop_read').prop('isthisatest') != 'yes!') {
 					throw 'Did not find the correct element';
 				} else {
 					$$('.test_prop_write').prop('isthisatest','ok');
 					var checkme = document.getElementsByClassName('test_prop_write');
-					if (checkme[0].getAttribute('isthisatest') == "ok" && checkme[1].getAttribute('isthisatest') == "ok" && checkme[2].getAttribute('isthisatest') == "ok") {
+					if (checkme[0].getAttribute('isthisatest') == 'ok' && checkme[1].getAttribute('isthisatest') == 'ok' && checkme[2].getAttribute('isthisatest') == 'ok') {
 						passing(name);
 					} else {
 						throw 'Did not write to the correct element or to all the elements';
@@ -488,7 +506,7 @@
 						}
 					},
 					function (xhr) {
-						throw "An error occurred. Response code: " + xhr.status;
+						throw 'An error occurred. Response code: ' + xhr.status;
 					});
 				*/
 			});
@@ -506,7 +524,7 @@
 						}
 					},
 					function (xhr) {
-						throw "An error occurred. Response code: " + xhr.status;
+						throw 'An error occurred. Response code: ' + xhr.status;
 					});
 				*/
 			});
@@ -522,6 +540,20 @@
 				var expect_b = 'from=bob&to=alice&msg=hello%2520world';
 				if (check_a === expect_a) {
 					if (check_b === expect_b) {
+						passing(name);
+					} else throw 'Check B fails';
+				} else throw 'Check A fails';
+			});
+			// > isEmptyObject(obj)
+			test('isEmptyObject', function(name) {
+				var check_a = $$().isEmptyObject({});
+				var check_b = $$().isEmptyObject({
+					from: 'bob',
+					to: 'alice',
+					msg: 'hello world'
+				});
+				if (check_a) {
+					if (!check_b) {
 						passing(name);
 					} else throw 'Check B fails';
 				} else throw 'Check A fails';

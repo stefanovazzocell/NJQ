@@ -254,7 +254,7 @@
 		/*
 		* isEmptyObject(obj) - Checks if an object is empty
 		* 
-		* @param  obj object containing the data to encode
+		* @param  obj object containing the data to check
 		* @return boolean true if is empty and false if has element
 		*/
 		isEmptyObject: function (obj) {
