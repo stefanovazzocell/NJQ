@@ -1,7 +1,7 @@
 'use strict';
 
 /*
-* NJQ (Version 0.0.0)
+* NJQ (Version 0.1.0)
 * by Stefano Vazzoler (stefanovazzocell@gmail.com)
 * https://stefanovazzoler.com/
 */
@@ -15,7 +15,6 @@
 		} else this.selector = selector; // Else, just assume it to be a valid obj
 	};
 	window.$$ = $$;
-	window.$$.post = $$().post;
 	$$.fn = $$.prototype = {
 		/*
 		* ready(callback) - Executes callback when document is loaded
