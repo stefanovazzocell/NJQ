@@ -231,9 +231,7 @@
 				} else onFail(xhr); // else callback to onFail
 			};
 			if (data != {}) { // If there is any data to pass in the body
-				xhr.send(function () { // Send request
-					return this.encodeDataForURI(data); // Send the encoded URI back
-				});
+				xhr.send(this.encodeDataForURI(data)); // Send the encoded URI back
 			} else {
 				xhr.send(); // Else, just send the request
 			}
