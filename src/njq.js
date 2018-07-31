@@ -182,15 +182,16 @@
 			this.event('click', callback); // Sets a click callback
 		},
 		/*
-		* post(url, data, onSuccess, onFail) - Performs a POST request
+		* post(url, data, onSuccess, onFail, isJson) - Performs a POST request
 		* 
 		* @param  url string the url that is being called
 		* @param  data (optional) object containing the body of the post request
 		* @param  onSuccess(response,xhr) (optional) function called if success
 		* @param  onFail(xhr) (optional) function function called in case of failure
+		* @param  isJson (optional) bool true if there is the need to encode data as json, false otherwise
 		*/
-		post: function (url, data={}, onSuccess=function(){}, onFail=function(){console.error('NJQ POST Error');}) {
-			this.ajax(url, 'POST', data, onSuccess, onFail); // Make ajax POST request
+		post: function (url, data={}, onSuccess=function(){}, onFail=function(){console.error('NJQ POST Error');}, isJson=false) {
+			this.ajax(url, 'POST', data, onSuccess, onFail, '', isJson); // Make ajax POST request
 		},
 		/*
 		* get(url, data, onSuccess, onFail) - Performs a GET request
@@ -208,7 +209,7 @@
 			this.ajax(url + par, 'GET', {}, onSuccess, onFail); // Make ajax GET request
 		},
 		/*
-		* ajax(url, method, data, onSuccess, onFail, contentType) - Performs a request
+		* ajax(url, method, data, onSuccess, onFail, contentType, isJson) - Performs a request
 		* 
 		* @param  url string the url that is being called
 		* @param  method (optional) string specifies the method of the request
@@ -216,13 +217,15 @@
 		* @param  onSuccess(response,xhr) (optional) function called if success
 		* @param  onFail(xhr) (optional) function function called in case of failure
 		* @param  contentType (optional) string specifies the content type header
-		*/
-		ajax: function (url, method='GET', data={}, onSuccess=function(){}, onFail=function(){console.error('NJQ Ajax Error');}, contentType='') {
+		* @param  isJson (optional) bool true if data is json, false otherwise
+		a*/
+		ajax: function (url, method='GET', data={}, onSuccess=function(){}, onFail=function(){console.error('NJQ Ajax Error');}, contentType='', isJson=false) {
 			var xhr = new XMLHttpRequest(); // Initialize a XMLHttpRequest
 			if (method == 'GET' && !this.isEmptyObject(data)) method='POST'; // Try to guess the method
-			xhr.open(method, url); // Prepare the request
+			xhr.open(method, url); // Prepare the request - isJson
 			// Try to guess the content type header
-			if (contentType == '' && method == 'POST') contentType = 'application/x-www-form-urlencoded';
+			if (contentType == '' && method == 'POST' && !isJson) contentType = 'application/x-www-form-urlencoded'; // "application/json"
+			if (contentType == '' && method == 'POST' && isJson) contentType = 'application/json';
 			// Set the header if necessary
 			if (contentType != '') xhr.setRequestHeader('Content-Type', contentType);
 			xhr.onload = function() { // Prepares the request callbacks
@@ -231,7 +234,9 @@
 				} else onFail(xhr); // else callback to onFail
 			};
 			if (data != {}) { // If there is any data to pass in the body
-				xhr.send(this.encodeDataForURI(data)); // Send the encoded URI back
+				if (isJson) {
+					xhr.send(JSON.stringify(data)); // Send the encoded URI back (json mode)
+				} else xhr.send(this.encodeDataForURI(data)); // Send the encoded URI back
 			} else {
 				xhr.send(); // Else, just send the request
 			}
