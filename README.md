@@ -22,6 +22,10 @@ _* if you need the `log()` operator (for testing) use this version_
 
 _* if you need any ajax request (ajax(), post(), and get()) use this version_
 
+## How do I download it?
+You can download this program at the [releases](https://github.com/stefanovazzocell/NJQ/releases/) page on Github.
+
+For the latest updates, features, and fixes you can experiment with the raw development version; just save [this](https://raw.githubusercontent.com/stefanovazzocell/NJQ/master/src/njq.js) file.
 
 ## Versions
 NJQ follows tentatively [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html).
