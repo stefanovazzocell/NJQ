@@ -271,10 +271,8 @@
 		* @return boolean true if is empty and false if has element
 		*/
 		isEmptyObject: function (obj) {
-			for (var key in obj) {
-				return false; // If any key is found
-			}
-			return true;
+			// Checks if length 0 and is object
+			return obj.constructor === Object && Object.keys(obj).length === 0
 		}
 	};
 })(this,document);
