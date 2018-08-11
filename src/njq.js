@@ -122,6 +122,16 @@
 			});
 		},
 		/*
+		* hasClass(className) - Checks if the element has a given class
+		* 
+		* @param  class string containing the name of the class to toggle
+		* @return true if element has a given class, false otherwise
+		*/
+		hasClass: function (className) {
+			// Check if element has the class
+			return this.first().classList.contains(className);
+		},
+		/*
 		* style(property, newValue) - Sets OR returns the given style property
 		*                 IF newValue passed, changes all the instances to the new newValue
 		*                 ELSE returns the velue for the given style property of the first element
