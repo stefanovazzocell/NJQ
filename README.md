@@ -18,7 +18,8 @@ Here's a handy chart:
 | njq_d_na_###.min.js | ✓    | ✗     | 1.8 kB    |
 | njq_p_na_###.min.js | ✗    | ✗     | 1.7 kB    |
 
-`* if you need the `log()` operator (for testing) use this version`
+`* if you need the log() operator (for testing) use this version`
+
 `** if you need any ajax request (ajax(), post(), and get()) use this version`
 
 `*** size for the min file, version 0.2.0, not gzipped`
