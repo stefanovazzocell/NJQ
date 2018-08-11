@@ -28,6 +28,7 @@
 				<li class="c_addClass">addClass(newClass) <a class="nu" href="#f_addClass">|></a></li>
 				<li class="c_removeClass">removeClass(oldClass) <a class="nu" href="#f_removeClass">|></a></li>
 				<li class="c_toggleClass">toggleClass(className) <a class="nu" href="#f_toggleClass">|></a></li>
+				<li class="c_hasClass">hasClass(className) <a class="nu" href="#f_hasClass">|></a></li>
 				<li class="c_style">style(property, newValue) <a class="nu" href="#f_style">|></a></li>
 				<li class="c_val">val(newValue) <a class="nu" href="#f_val">|></a></li>
 				<li class="c_prop">prop(property,newValue) <a class="nu" href="#f_prop">|></a></li>
@@ -139,6 +140,14 @@
 			<div class="code">
 				<p class="c cc">// Toggles the class 'expanded' to each instance of .menu (on/off)</p>
 				<p class="c">$$('.menu').toggleClass('expanded');</p>
+			</div><br><br><br>
+			<h4>Has a class</h4>
+			<p>
+				<b id="f_hasClass" class="c_hasClass">hasClass(className)</b> Checks if the class is selected
+			</p>
+			<div class="code">
+				<p class="c cc">// If the class expanded is part of menu, show an alert</p>
+				<p class="c">if ($$('.menu').hasClass('expanded')) alert('Menu is expanded!');</p>
 			</div><br><br><br>
 			<h4>Gets or Sets style properties</h4>
 			<p>
@@ -316,6 +325,8 @@
 			<div id="test_toggleClass_a" class="test test_toggleClass okay"></div>
 			<div id="test_toggleClass_b" class="test test_toggleClass okay"></div>
 			<div id="test_toggleClass_c" class="test test_toggleClass"></div>
+			<div id="test_hasClass_a" class="test okay"></div>
+			<div id="test_hasClass_b" class="test"></div>
 			<div class="test test_style_read okay" style="max-width: 11px"></div>
 			<div class="test test_style_read notOkay" style="max-width: 10px"></div>
 			<div id="test_style_write" class="test test_style_write"></div>
@@ -439,6 +450,12 @@
 				$$('.test_toggleClass').toggleClass('okay'); // Select the element
 				if (isValid(document.getElementById('test_toggleClass_a')) || isValid(document.getElementById('test_toggleClass_b')) || !isValid(document.getElementById('test_toggleClass_c'))) {
 					throw 'Checks fail for toggleClass';
+				} else passing(name);
+			});
+			// > hasClass(className)
+			test('hasClass', function(name) {
+				if (!$$('#test_hasClass_a').hasClass('okay') || $$('#test_hasClass_b').hasClass('okay')) {
+					throw 'Checks fail for hasClass';
 				} else passing(name);
 			});
 			// > style(property, newValue)
