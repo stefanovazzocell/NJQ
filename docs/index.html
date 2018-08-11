@@ -565,9 +565,12 @@
 					to: 'alice',
 					msg: 'hello world'
 				});
+				var check_c = $$().isEmptyObject([]);
 				if (check_a) {
 					if (!check_b) {
-						passing(name);
+						if (!check_c) {
+							passing(name);
+						} else throw 'Check C fails';
 					} else throw 'Check B fails';
 				} else throw 'Check A fails';
 			});
