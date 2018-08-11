@@ -11,16 +11,17 @@ Probably, but you can check out for yourself by visiting [this page](https://ste
 A few versions are provided. Depending on what your needs are, you might prefer some compared to others.
 Here's a handy chart:
 
-| File                | dev* | ajax** |
-| ------------------- |:----:|:------:|
-| njq_dev_###.min.js  | ✓    | ✓     |
-| njq_prod_###.min.js | ✗    | ✓     |
-| njq_d_na_###.min.js | ✓    | ✗     |
-| njq_p_na_###.min.js | ✗    | ✗     |
+| File                | dev* | ajax** |  size***  |
+| ------------------- |:----:|:------:| --------- |
+| njq_dev_###.min.js  | ✓    | ✓     | 2.6 kB    |
+| njq_prod_###.min.js | ✗    | ✓     | 2.5 kB    |
+| njq_d_na_###.min.js | ✓    | ✗     | 1.8 kB    |
+| njq_p_na_###.min.js | ✗    | ✗     | 1.7 kB    |
 
-_* if you need the `log()` operator (for testing) use this version_
+`* if you need the `log()` operator (for testing) use this version`
+`** if you need any ajax request (ajax(), post(), and get()) use this version`
 
-_* if you need any ajax request (ajax(), post(), and get()) use this version_
+`*** size for the min file, version 0.2.0, not gzipped`
 
 ## How do I download it?
 You can download this program at the [releases](https://github.com/stefanovazzocell/NJQ/releases/) page on Github.
