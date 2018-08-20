@@ -258,7 +258,7 @@
 		* @return string with the data object encoded for URI
 		*/
 		encodeDataForURI: function (data={}) {
-			var out = new Array();
+			var out = [];
 			for(var key in data){ // Add all data in an array
 				out.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
 			}
@@ -272,7 +272,7 @@
 		*/
 		isEmptyObject: function (obj) {
 			// Checks if length 0 and is object
-			return obj.constructor === Object && Object.keys(obj).length === 0
+			return obj.constructor === Object && Object.keys(obj).length === 0;
 		}
 	};
 })(this,document);
