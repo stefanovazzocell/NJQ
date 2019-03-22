@@ -61,17 +61,7 @@
 		* @return selector is the first selector in the list
 		*/
 		first: function () {
-			var toReturn = null;
-			try {
-				toReturn = this.selector[0]; // Try to get the first element in the list
-			} catch (error) {
-				try {
-					toReturn = this.selector; // Try to get the only selector
-				} catch (newError) {
-					console.error('$$.first() - No element selected');
-				}
-			}
-			return toReturn;
+			return (this.selector[0] || this.selector);
 		},
 		/*
 		* select() - Simulates an user click on the element
