@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Page with examples for the NJQ plugin by Stefano Vazzoler">
+    <meta name="author" content="Stefano Vazzoler">
+    <title>NJQ ($$) - Examples</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main>
+      <h2>NJQ - Examples Page</h2>
+      <i><a href="https://github.com/stefanovazzocell/NJQ/" target="_blank">NoJQuery</a> by Stefano Vazzoler (<a href="mailto:stefanovazzocell@gmail.com">stefanovazzocell@gmail.com</a>)</i><br><br>
+      <p>
+        In this page will show sample code for the NJQ Library.
+      </p>
+      <p>
+        Checks: <i style="color: #800">RED</i> is failing, <i style="color: #080">GREEN</i> is passing, and <i>BLACK</i> indicates that no automatic test was performed.
+      </p><br>
+      <ul>
+        <li class="c_ready">ready(callback) <a class="nu" href="#f_ready">|></a></li>
+        <li class="c_each">each(fn) <a class="nu" href="#f_each">|></a></li>
+        <li class="c_first">first() <a class="nu" href="#f_first">|></a></li>
+        <li class="c_select">select() <a class="nu" href="#f_select">|></a></li>
+        <li class="c_html">html(newHtml) <a class="nu" href="#f_html">|></a></li>
+        <li class="c_addClass">addClass(newClass) <a class="nu" href="#f_addClass">|></a></li>
+        <li class="c_removeClass">removeClass(oldClass) <a class="nu" href="#f_removeClass">|></a></li>
+        <li class="c_toggleClass">toggleClass(className) <a class="nu" href="#f_toggleClass">|></a></li>
+        <li class="c_hasClass">hasClass(className) <a class="nu" href="#f_hasClass">|></a></li>
+        <li class="c_style">style(property, newValue) <a class="nu" href="#f_style">|></a></li>
+        <li class="c_val">val(newValue) <a class="nu" href="#f_val">|></a></li>
+        <li class="c_prop">prop(property,newValue) <a class="nu" href="#f_prop">|></a></li>
+        <li class="c_event">event(event, callback) <a class="nu" href="#f_event">|></a></li>
+        <li class="c_onclick">onClick(callback) <a class="nu" href="#f_onclick">|></a></li>
+        <li class="c_post">post(url,data,onSuccess,onFail,isJson) <a class="nu" href="#f_post">|></a></li>
+        <li class="c_get">get(url,data,onSuccess,onFail) <a class="nu" href="#f_get">|></a></li>
+        <li class="c_ajax noCheck">ajax(url,method,data,onSuccess,onFail,contentType,isJson) <a class="nu" href="#f_ajax">|></a></li>
+        <li class="c_encodeUri">encodeUri(data) <a class="nu" href="#f_encodeUri">|></a></li>
+        <li class="c_emptyObj">emptyObj(obj) <a class="nu" href="#f_emptyObj">|></a></li>
+      </ul><br><br><br>
+      <h4>Selecting element(s)</h4>
+      <p>
+        Here are some examples of how an element can be selected
+      </p>
+      <div class="code">
+        <p class="c cc">// Select by element</p>
+        <p class="c">$$('html').html();</p>
+        <p class="c cc">// Select by id</p>
+        <p class="c">$$('#id').html();</p>
+        <p class="c cc">// Select by class</p>
+        <p class="c">$$('.class').html();</p>
+        <p class="c cc">// Select by reference</p>
+        <p class="c">$$(this).html();</p>
+      </div><br><br><br>
+      <h4>Page Ready</h4>
+      <p>
+        <b id="f_ready" class="c_ready">ready(callback)</b> calls the callback when the page is done loading.
+      </p>
+      <div class="code">
+        <p class="c cc">// Show a message when the page is loaded</p>
+        <p class="c">$$().ready(function(){</p>
+        <p class="c"> alert('The page is loaded!');</p>
+        <p class="c">});</p>
+      </div><br><br><br>
+      <h4>For Each</h4>
+      <p>
+        <b id="f_each" class="c_each">each(fn)</b> calls a function on every selected element.<br>
+        The function should have two parameters:<br>
+        <ol>
+          <li class="noCheck">element - is the current selected element</li>
+          <li class="noCheck">index - is the index of the current element</li>
+        </ol>
+      </p>
+      <div class="code">
+        <p class="c cc">// Log a message for every 'p' element</p>
+        <p class="c">$$('p').each(function(element, index){</p>
+        <p class="c"> console.log(index + ' - A paragraph element!');</p>
+        <p class="c">});</p>
+      </div><br><br><br>
+      <h4>First Element</h4>
+      <p>
+        <b id="f_first" class="c_first">first()</b> Returns the first selected element.
+      </p>
+      <div class="code">
+        <p class="c cc">// Returns the first div element</p>
+        <p class="c">$$('div').first();</p>
+      </div><br><br><br>
+      <h4>Select/Click Element</h4>
+      <p>
+        <b id="f_select" class="c_select">select()</b> Simulates an user selecting an element.
+      </p>
+      <div class="code">
+        <p class="c cc">// Equivalent to user clicking element</p>
+        <p class="c">$$('#clickme').select();</p>
+      </div><br><br><br>
+      <h4>Get or Set inner HTML of element</h4>
+      <p>
+        <b id="f_html" class="c_html">html(newHtml)</b> gets or sets the inner html of an element(s)<br>
+        Has an optional newHtml parameter. This parameter should be a string containing the new inner html to set to each selected element.<br>
+        If no parameter is passed, it returns a string with the inner html of the first element.
+      </p>
+      <div class="code">
+        <p class="c cc">// Returns the inner html of the first .readme</p>
+        <p class="c">$$('.readme').html();</p>
+        <p class="c cc">/* Writes 'Hello World!' to every selected</p>
+        <p class="c cc">*  paragraph element</p>
+        <p class="c cc">*/</p>
+        <p class="c">$$('p').html('Hello World!');</p>
+      </div><br><br><br>
+      <h4>Add a class</h4>
+      <p>
+        <b id="f_addClass" class="c_addClass">addClass(newClass)</b> Simulates an user selecting an element.
+      </p>
+      <div class="code">
+        <p class="c cc">// Adds the class 'expanded' to each instance of .menu</p>
+        <p class="c">$$('.menu').addClass('expanded');</p>
+      </div><br><br><br>
+      <h4>Remove a class</h4>
+      <p>
+        <b id="f_removeClass" class="c_removeClass">removeClass(oldClass)</b> Removes the given class from all elements selected
+      </p>
+      <div class="code">
+        <p class="c cc">// Removes the class 'expanded' to each instance of .menu</p>
+        <p class="c">$$('.menu').removeClass('expanded');</p>
+      </div><br><br><br>
+      <h4>Toggle a class</h4>
+      <p>
+        <b id="f_toggleClass" class="c_toggleClass">toggleClass(className)</b> Toggles the given class from all elements selected
+      </p>
+      <div class="code">
+        <p class="c cc">// Toggles the class 'expanded' to each instance of .menu (on/off)</p>
+        <p class="c">$$('.menu').toggleClass('expanded');</p>
+      </div><br><br><br>
+      <h4>Has a class</h4>
+      <p>
+        <b id="f_hasClass" class="c_hasClass">hasClass(className)</b> Checks if the class is selected
+      </p>
+      <div class="code">
+        <p class="c cc">// If the class expanded is part of menu, show an alert</p>
+        <p class="c">if ($$('.menu').hasClass('expanded')) alert('Menu is expanded!');</p>
+      </div><br><br><br>
+      <h4>Gets or Sets style properties</h4>
+      <p>
+        <b id="f_style" class="c_style">style(property,newValue)</b> gets or sets a given css property<br>
+        Has an property parameter which indicates the property to look at.<br>
+        Has an Optional newValue parameter. This parameter should be a string containing the new value to set to the css property<br>
+        If no parameter is passed, it returns a string with the value of the requested css property of the first element.
+      </p>
+      <div class="code">
+        <p class="c cc">// Hides all the .loading elements by setting 'display: none'</p>
+        <p class="c">$$('.loading').style('display', 'none');</p>
+        <p class="c cc">// Returns the height property of the #div3</p>
+        <p class="c">$$('#div3').style('height');</p>
+      </div><br><br><br>
+      <h4>Get or Set value of an element</h4>
+      <p>
+        <b id="f_val" class="c_val">val(newValue)</b> gets or sets the value of an element(s)<br>
+        Has an optional newValue parameter. This parameter should be a string containing the new value to set to each selected element.<br>
+        If no parameter is passed, it returns a string with the value of the first element.
+      </p>
+      <div class="code">
+        <p class="c cc">// Returns the value of #username</p>
+        <p class="c">$$('#username').val();</p>
+        <p class="c cc">// Sets the username as 'Bob'</p>
+        <p class="c">$$('#username').val('Bob');</p>
+      </div><br><br><br>
+      <h4>Get or Set a property of an element</h4>
+      <p>
+        <b id="f_prop" class="c_prop">prop(property,newValue)</b> gets or sets the property of an element(s)<br>
+        Has an optional newValue parameter. This parameter should be a string containing the new property to set to each selected element.<br>
+        If no parameter is passed, it returns a string with the value of the first element.
+      </p>
+      <div class="code">
+        <p class="c cc">// Returns the name property of the first input</p>
+        <p class="c">$$('input').prop('name');</p>
+        <p class="c cc">// Sets the username's name as 'user'</p>
+        <p class="c">$$('#username').prop('name','user');</p>
+      </div><br><br><br>
+      <h4>Add an event listener with a callback</h4>
+      <p>
+        <b id="f_event" class="c_event">event(event,callback)</b> set's a callback for an event on the current set of elements<br>
+        Callback is the function to callback and the event is a string name of the callback<br>
+        A list of callbacks can be found on <a target="_blank" href="https://www.w3schools.com/jsref/dom_obj_event.asp">w3schools' site</a>
+      </p>
+      <div class="code">
+        <p class="c cc">// Returns a message on right click on the page</p>
+        <p class="c">$$('html').event('contextmenu',function () {</p>
+        <p class="c"> alert('Annoying message'); });</p>
+      </div><br><br><br>
+      <h4>Click event</h4>
+      <p>
+        <b id="f_onclick" class="c_onclick">onClick(callback)</b> set's a click callback for an event on the current set of elements<br>
+        Callback is the function to callback.
+      </p>
+      <div class="code">
+        <p class="c cc">// Returns a message on right click on the page</p>
+        <p class="c">$$('button').onClick(function () {</p>
+        <p class="c"> alert('Button clicked!'); });</p>
+      </div><br><br><br>
+      <h4>Ajax POST Requests</h4>
+      <p>
+        <b id="f_post" class="c_post">post(url,data,onSuccess,onFail,isJson)</b> makes an asynchronous ajax POST request to a given url.<br>
+        url string the url that is being called<br>
+        data (optional) object containing the body of the post request<br>
+        onSuccess(response,xhr) (optional) function called if success. Optional response is the string with the body of the returned data, and xhr is to access the original XMLHttpRequest<br>
+        onFail(xhr) (optional) function function called in case of failure. Optionally access xhr, the original XMLHttpRequest<br>
+        isJson (optional) bool true if there is the need to encode data as json, false otherwise
+      </p>
+      <div class="code">
+        <p class="c cc">// Make a request to a sample site to get an user's ip</p>
+        <p class="c">$$().post('https://example.com/getip/?format=json',</p>
+        <p class="c">          {},</p>
+        <p class="c">          function (response) {</p>
+        <p class="c">              var ipdata = JSON.parse(reponse);</p>
+        <p class="c">              alert("Your ip is " + ipdata['ip']);</p>
+        <p class="c">          },</p>
+        <p class="c">          function (xhr) {</p>
+        <p class="c">              alert("An error occurred. Response code: " + xhr.status);</p>
+        <p class="c">          });</p>
+      </div><br><br><br>
+      <h4>Ajax GET Requests</h4>
+      <p>
+        <b id="f_get" class="c_get">get(url,data,onSuccess,onFail)</b> makes an asynchronous ajax GET request to a given url.<br>
+        url string the url that is being called<br>
+        data (optional) object containing the parameters of the get request to be passed with the url<br>
+        onSuccess(response,xhr) (optional) function called if success. Optional response is the string with the body of the returned data, and xhr is to access the original XMLHttpRequest<br>
+        onFail(xhr) (optional) function function called in case of failure. Optionally access xhr, the original XMLHttpRequest
+      </p>
+      <div class="code">
+        <p class="c cc">// Make a request to a sample site to get an user's ip</p>
+        <p class="c">$$().get('https://example.com/getip/',</p>
+        <p class="c">         { format: 'json' },</p>
+        <p class="c">         function (response) {</p>
+        <p class="c">             var ipdata = JSON.parse(reponse);</p>
+        <p class="c">             alert("Your ip is " + ipdata['ip']);</p>
+        <p class="c">         },</p>
+        <p class="c">         function (xhr) {</p>
+        <p class="c">             alert("An error occurred. Response code: " + xhr.status);</p>
+        <p class="c">         });</p>
+      </div><br><br><br>
+      <h4>Ajax Custom Request</h4>
+      <p>
+        <b id="f_ajax" class="c_ajax noCheck">ajax(url,method,data,onSuccess,onFail,contentType,isJson)</b> makes an asynchronous ajax request to a given url.<br>
+        url string the url that is being called<br>
+        method (optional) string specifies the method of the request<br>
+        data (optional) object containing the parameters of the get request to be passed with the url<br>
+        onSuccess(response,xhr) (optional) function called if success. Optional response is the string with the body of the returned data, and xhr is to access the original XMLHttpRequest<br>
+        onFail(xhr) (optional) function function called in case of failure. Optionally access xhr, the original XMLHttpRequest<br>
+        contentType (optional) string specifies the content type header<br>
+        isJson (optional) bool true if there is the need to encode data as json, false otherwise
+      </p>
+      <div class="code">
+        <p class="c cc">// Make a request to a sample site to get an user's ip</p>
+        <p class="c">$$().ajax('https://example.com/getip/',</p>
+        <p class="c">          'POST',</p>
+        <p class="c">          { format: 'json' },</p>
+        <p class="c">          function (response) {</p>
+        <p class="c">              var ipdata = JSON.parse(reponse);</p>
+        <p class="c">              alert("Your ip is " + ipdata['ip']);</p>
+        <p class="c">          },</p>
+        <p class="c">          function (xhr) {</p>
+        <p class="c">              alert("An error occurred. Response code: " + xhr.status);</p>
+        <p class="c">          });</p>
+      </div><br><br><br>
+      <h4>Encode object for ajax request</h4>
+      <p>
+        <b id="f_encodeUri" class="c_encodeUri">encodeUri(data)</b> encodes an object such as {user: 'bob', password: 'secret'} to a string 'user=bob&password=secret'.<br>
+        data (optional) object containing the data to encode
+      </p>
+      <div class="code">
+        <p class="c cc">// Encodes an action for a url</p>
+        <p class="c">var cmd = 'newuser';</p>
+        <p class="c">var u = 'example.com/?';</p>
+        <p class="c">u += $$().encodeUri({</p>
+        <p class="c">  todo: action</p>
+        <p class="c">});</p>
+        <p class="c cc">// Prints 'example.com/?todo=newuser'</p>
+        <p class="c">console.log(u);</p>
+      </div><br><br><br>
+      <h4>Check if obj empty</h4>
+      <p>
+        <b id="f_emptyObj" class="c_emptyObj">emptyObj(obj)</b> checks if a javascript objecct is empty.<br>
+        obj object containing the data to check
+      </p>
+      <div class="code">
+        <p class="c cc">// This first example will not do anything</p>
+        <p class="c">var obj = {};</p>
+        <p class="c">if (! $$().emptyObj(obj)) {</p>
+        <p class="c">  // Do something</p>
+        <p class="c">}</p>
+        <p class="c cc">// This first example will do anything</p>
+        <p class="c">obj = { user: 'alice' };</p>
+        <p class="c">if (! $$().emptyObj(obj)) {</p>
+        <p class="c">  // Do something</p>
+        <p class="c">}</p>
+      </div><br><br><br>
+      <!-- HIDDEN ELEMENTS FOR TESTING -->
+      <div class="test test_each_a okay"></div>
+      <div class="test test_each_a okay"></div>
+      <div class="test test_each_a okay"></div>
+      <div class="test test_each_b okay"></div>
+      <div class="test test_first_a okay"></div>
+      <div class="test test_first_a notOkay"></div>
+      <div class="test test_first_b notOkay"></div>
+      <div class="test test_first_b okay"></div>
+      <div class="test test_select okay" onclick="passing('select')"></div>
+      <div class="test test_select notOkay"></div>
+      <div class="test test_html_read okay"><b>Read</b> me!</div>
+      <div class="test test_html_read notOkay"><b>Don't</b> read me!</div>
+      <div class="test test_html_write test_html_write_a okay">Write on me</div>
+      <div class="test test_html_write test_html_write_b okay">and me</div>
+      <div class="test test_html_write test_html_write_c okay"></div>
+      <div id="test_addClass_a" class="test test_addClass"></div>
+      <div id="test_addClass_b" class="test test_addClass"></div>
+      <div id="test_removeClass_a" class="test test_removeClass okay"></div>
+      <div id="test_removeClass_b" class="test test_removeClass okay"></div>
+      <div id="test_toggleClass_a" class="test test_toggleClass okay"></div>
+      <div id="test_toggleClass_b" class="test test_toggleClass okay"></div>
+      <div id="test_toggleClass_c" class="test test_toggleClass"></div>
+      <div id="test_hasClass_a" class="test okay"></div>
+      <div id="test_hasClass_b" class="test"></div>
+      <div class="test test_style_read okay" style="max-width: 11px"></div>
+      <div class="test test_style_read notOkay" style="max-width: 10px"></div>
+      <div id="test_style_write" class="test test_style_write"></div>
+      <input type="text" class="test test_val_read okay" value="myName">
+      <input type="text" class="test test_val_write okay">
+      <input type="text" class="test test_val_write okay">
+      <input type="text" class="test test_val_write okay">
+      <div class="test test_prop_read okay" isthisatest="yes!"></div>
+      <div class="test test_prop_write okay" isthisatest="asdf"></div>
+      <div class="test test_prop_write okay" isthisatest="fghj"></div>
+      <div class="test test_prop_write okay" isthisatest="zxcv"></div>
+      <div id="test_event" class="test test_event okay" ></div>
+      <div id="test_onclick" class="test test_onclick okay"></div>
+      <!--------------------------------->
+    </main>
+    <script src="../src/njq.js"></script>
+    <script type="text/javascript">
+      /*
+      *  Helpers
+      */
+      // Changes color by class
+      function passing(testName) {
+        var toChange = document.getElementsByClassName('c_' + testName);
+        for (var i = toChange.length - 1; i >= 0; i--) {
+          toChange[i].style.color = '#080';
+        }
+      }
+      // No test performed
+      function noCheck(testName) {
+        var toChange = document.getElementsByClassName('c_' + testName);
+        for (var i = toChange.length - 1; i >= 0; i--) {
+          toChange[i].classList.add('noCheck');
+        }
+      }
+      function isValid(element) {
+        return ((' ' + element.className + ' ').replace(/[\n\t]/g, ' ').indexOf(' okay ') > -1);
+      }
+      function test(name, fn) {
+        try {
+          fn(name);
+        } catch(error) {
+          console.warn('Call to ' + name + ' throwed error:');
+          console.error(error);
+        }
+      }
+      /*
+      * Tests
+      */
+      // > ready(callback)
+      test('ready', function(name) {
+        $$().ready(function() {
+          passing(name);
+        });
+      });
+      // > each(fn)
+      test('each', function(name) {
+        var counter_a = 0;
+        var counter_b = 0;
+        var counter_c = 0;
+        $$('.test_each_a').each(function(element, index) {
+          if (isValid(element)) {
+            counter_a++;
+          }
+        });
+        $$('.test_each_b').each(function(element, index) {
+          if (isValid(element)) {
+            counter_b++;
+          }
+        });
+        $$('.test_each_c').each(function(element, index) {
+          if (isValid(element)) {
+            counter_c++;
+          }
+        });
+        if (counter_a == 3 && counter_b == 1 && counter_c == 0) {
+          passing(name);
+        } else throw 'Incorrect counters value: A is ' + counter_a + ' expects 3, B is ' + counter_b  + ' expects 1, C is ' + counter_c + ' expects 0';
+      });
+      // > first()
+      test('first', function(name) {
+        if (isValid($$('.test_first_a').first())) {
+          if (!isValid($$('.test_first_b').first())) {
+            passing(name);
+          } else throw 'It found the incorrect element';
+        } else throw 'Does not find element';
+      });
+      // > select()
+      test('select', function(name) {
+        $$('.test_select').select(); // Select the element
+      });
+      // > html(newHtml)
+      test('html', function(name) {
+        if ($$('.test_html_read').html() != '<b>Read</b> me!') {
+          throw 'Did not find the correct element';
+        } else {
+          $$('.test_html_write').html('ok');
+          var checkme = document.getElementsByClassName('test_html_write');
+          if (checkme[0].innerHTML == 'ok' && checkme[1].innerHTML == 'ok' && checkme[2].innerHTML == 'ok') {
+            passing(name);
+          } else {
+            throw 'Did not write to the correct element or to all the elements';
+          }
+        }
+      });
+      // > addClass(newClass)
+      test('addClass', function(name) {
+        $$('.test_addClass').addClass('okay'); // Select the element
+        if (isValid(document.getElementById('test_addClass_a')) && isValid(document.getElementById('test_addClass_b'))) {
+          passing(name);
+        } else throw 'Cannot find the okay class after addClass';
+      });
+      // > removeClass(newClass)
+      test('removeClass', function(name) {
+        $$('.test_removeClass').removeClass('okay'); // Select the element
+        if (isValid(document.getElementById('test_removeClass_a')) || isValid(document.getElementById('test_removeClass_b'))) {
+          throw 'Finds the okay class after removeClass';
+        } else passing(name);
+      });
+      // > toggleClass(className)
+      test('toggleClass', function(name) {
+        $$('.test_toggleClass').toggleClass('okay'); // Select the element
+        if (isValid(document.getElementById('test_toggleClass_a')) || isValid(document.getElementById('test_toggleClass_b')) || !isValid(document.getElementById('test_toggleClass_c'))) {
+          throw 'Checks fail for toggleClass';
+        } else passing(name);
+      });
+      // > hasClass(className)
+      test('hasClass', function(name) {
+        if (!$$('#test_hasClass_a').hasClass('okay') || $$('#test_hasClass_b').hasClass('okay')) {
+          throw 'Checks fail for hasClass';
+        } else passing(name);
+      });
+      // > style(property, newValue)
+      test('style', function(name) {
+        var readTest = $$('.test_style_read').style('max-width');
+        $$('.test_style_write').style('max-width', '13px');
+        var writeTest = document.getElementById('test_style_write').style['max-width'];
+        if (writeTest != '13px') throw 'Write test for style returned ' + writeTest;
+        if (readTest != '11px') throw 'Read test for style returned' + readTest;
+        passing(name);
+      });
+      // > val(newValue)
+      test('val', function(name) {
+        if ($$('.test_val_read').val() != 'myName') {
+          throw 'Did not find the correct element';
+        } else {
+          $$('.test_val_write').val('ok');
+          var checkme = document.getElementsByClassName('test_val_write');
+          if (checkme[0].value == 'ok' && checkme[1].value == 'ok' && checkme[2].value == 'ok') {
+            passing(name);
+          } else {
+            throw 'Did not write to the correct element or to all the elements';
+          }
+        }
+      });
+      // > prop(property,newValue)
+      test('prop', function(name) {
+        if ($$('.test_prop_read').prop('isthisatest') != 'yes!') {
+          throw 'Did not find the correct element';
+        } else {
+          $$('.test_prop_write').prop('isthisatest','ok');
+          var checkme = document.getElementsByClassName('test_prop_write');
+          if (checkme[0].getAttribute('isthisatest') == 'ok' && checkme[1].getAttribute('isthisatest') == 'ok' && checkme[2].getAttribute('isthisatest') == 'ok') {
+            passing(name);
+          } else {
+            throw 'Did not write to the correct element or to all the elements';
+          }
+        }
+      });
+      // > event(event,callback)
+      test('event', function(name) {
+        $$('#test_event').event('click', function() {
+          passing('event');
+        });
+        document.getElementById('test_event').click();
+      });
+      // > onClick(callback)
+      test('event', function(name) {
+        $$('#test_onclick').onClick(function() {
+          passing('onclick');
+        });
+        document.getElementById('test_onclick').click();
+      });
+      // > post(url,data,onSuccess,onFail)
+      test('post', function(name) {
+        noCheck(name); // Declare no test performed
+
+        /*
+        $$().post('https://yourdomain.com/test/',
+          { test: 'true'},
+          function (response) {
+            var parsedJSON = JSON.parse(reponse);
+            if (parsedJSON['test'] == 'passed') {
+              passing(name);
+            }
+          },
+          function (xhr) {
+            throw 'An error occurred. Response code: ' + xhr.status;
+          });
+        */
+      });
+      // > get(url,data,onSuccess,onFail)
+      test('get', function(name) {
+        $$().get('test.json',
+          {},
+          function (response) {
+            var parsedJSON = JSON.parse(response);
+            if (parsedJSON['test'] == 'passed') {
+              passing(name);
+            } else throw 'Reponse is ' + response;
+          },
+          function (xhr) {
+            throw 'An error occurred. Response code: ' + xhr.status;
+          });
+      });
+      // > encodeUri(data)
+      test('encodeUri', function(name) {
+        var check_a = $$().encodeUri({});
+        var expect_a = '';
+        var check_b = $$().encodeUri({
+          from: 'bob',
+          to: 'alice',
+          msg: 'hello world'
+        });
+        var expect_b = 'from=bob&to=alice&msg=hello%2520world';
+        if (check_a === expect_a) {
+          if (check_b === expect_b) {
+            passing(name);
+          } else throw 'Check B fails';
+        } else throw 'Check A fails';
+      });
+      // > emptyObj(obj)
+      test('emptyObj', function(name) {
+        var check_a = $$().emptyObj({});
+        var check_b = $$().emptyObj({
+          from: 'bob',
+          to: 'alice',
+          msg: 'hello world'
+        });
+        var check_c = $$().emptyObj([]);
+        if (check_a) {
+          if (!check_b) {
+            if (!check_c) {
+              passing(name);
+            } else throw 'Check C fails';
+          } else throw 'Check B fails';
+        } else throw 'Check A fails';
+      });
+    </script>
+  </body>
+</html>
