@@ -37,8 +37,8 @@
 				<li class="c_post">post(url,data,onSuccess,onFail,isJson) <a class="nu" href="#f_post">|></a></li>
 				<li class="c_get">get(url,data,onSuccess,onFail) <a class="nu" href="#f_get">|></a></li>
 				<li class="c_ajax noCheck">ajax(url,method,data,onSuccess,onFail,contentType,isJson) <a class="nu" href="#f_ajax">|></a></li>
-				<li class="c_encodeDataForURI">encodeDataForURI(data) <a class="nu" href="#f_encodeDataForURI">|></a></li>
-				<li class="c_isEmptyObject">isEmptyObject(obj) <a class="nu" href="#f_isEmptyObject">|></a></li>
+				<li class="c_encodeUri">encodeUri(data) <a class="nu" href="#f_encodeUri">|></a></li>
+				<li class="c_emptyObj">emptyObj(obj) <a class="nu" href="#f_emptyObj">|></a></li>
 			</ul><br><br><br>
 			<h4>Selecting element(s)</h4>
 			<p>
@@ -274,14 +274,14 @@
 			</div><br><br><br>
 			<h4>Encode object for ajax request</h4>
 			<p>
-				<b id="f_encodeDataForURI" class="c_encodeDataForURI">encodeDataForURI(data)</b> encodes an object such as {user: 'bob', password: 'secret'} to a string 'user=bob&password=secret'.<br>
+				<b id="f_encodeUri" class="c_encodeUri">encodeUri(data)</b> encodes an object such as {user: 'bob', password: 'secret'} to a string 'user=bob&password=secret'.<br>
 				data (optional) object containing the data to encode
 			</p>
 			<div class="code">
 				<p class="c cc">// Encodes an action for a url</p>
 				<p class="c">var cmd = 'newuser';</p>
 				<p class="c">var u = 'example.com/?';</p>
-				<p class="c">u += $$().encodeDataForURI({</p>
+				<p class="c">u += $$().encodeUri({</p>
 				<p class="c">  todo: action</p>
 				<p class="c">});</p>
 				<p class="c cc">// Prints 'example.com/?todo=newuser'</p>
@@ -289,18 +289,18 @@
 			</div><br><br><br>
 			<h4>Check if obj empty</h4>
 			<p>
-				<b id="f_isEmptyObject" class="c_isEmptyObject">isEmptyObject(obj)</b> checks if a javascript objecct is empty.<br>
+				<b id="f_emptyObj" class="c_emptyObj">emptyObj(obj)</b> checks if a javascript objecct is empty.<br>
 				obj object containing the data to check
 			</p>
 			<div class="code">
 				<p class="c cc">// This first example will not do anything</p>
 				<p class="c">var obj = {};</p>
-				<p class="c">if (! $$().isEmptyObject(obj)) {</p>
+				<p class="c">if (! $$().emptyObj(obj)) {</p>
 				<p class="c">  // Do something</p>
 				<p class="c">}</p>
 				<p class="c cc">// This first example will do anything</p>
 				<p class="c">obj = { user: 'alice' };</p>
-				<p class="c">if (! $$().isEmptyObject(obj)) {</p>
+				<p class="c">if (! $$().emptyObj(obj)) {</p>
 				<p class="c">  // Do something</p>
 				<p class="c">}</p>
 			</div><br><br><br>
@@ -543,11 +543,11 @@
 						throw 'An error occurred. Response code: ' + xhr.status;
 					});
 			});
-			// > encodeDataForURI(data)
-			test('encodeDataForURI', function(name) {
-				var check_a = $$().encodeDataForURI({});
+			// > encodeUri(data)
+			test('encodeUri', function(name) {
+				var check_a = $$().encodeUri({});
 				var expect_a = '';
-				var check_b = $$().encodeDataForURI({
+				var check_b = $$().encodeUri({
 					from: 'bob',
 					to: 'alice',
 					msg: 'hello world'
@@ -559,15 +559,15 @@
 					} else throw 'Check B fails';
 				} else throw 'Check A fails';
 			});
-			// > isEmptyObject(obj)
-			test('isEmptyObject', function(name) {
-				var check_a = $$().isEmptyObject({});
-				var check_b = $$().isEmptyObject({
+			// > emptyObj(obj)
+			test('emptyObj', function(name) {
+				var check_a = $$().emptyObj({});
+				var check_b = $$().emptyObj({
 					from: 'bob',
 					to: 'alice',
 					msg: 'hello world'
 				});
-				var check_c = $$().isEmptyObject([]);
+				var check_c = $$().emptyObj([]);
 				if (check_a) {
 					if (!check_b) {
 						if (!check_c) {
