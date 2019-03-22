@@ -40,16 +40,6 @@
 			return this;
 		},
 		/*
-		* log() - Prints every element that is currently selected on the console
-		*         NOTE: This is primarly for debugging purposes
-		*/
-		log: function () {
-			this.each((element, index) => { // Loop through every element
-				console.log('[' + index + '] ' + element); // Log the element
-			});
-			return this;
-		},
-		/*
 		* first() - Return the first selected element
 		* 
 		* @return selector is the first selector in the list
