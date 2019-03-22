@@ -49,8 +49,8 @@
 		*         NOTE: This is primarly for debugging purposes
 		*/
 		log: function () {
-			this.each(function (element, index) { // Loop through every element
-				console.log('Element ' + index + ' is ' + element); // Log the element
+			this.each((element, index) => { // Loop through every element
+				console.log('[' + index + '] ' + element); // Log the element
 			});
 		},
 		/*
