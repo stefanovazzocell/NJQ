@@ -52,6 +52,7 @@
 			this.each((element, index) => { // Loop through every element
 				console.log('[' + index + '] ' + element); // Log the element
 			});
+			return this;
 		},
 		/*
 		* first() - Return the first selected element
@@ -66,6 +67,7 @@
 		*/
 		select: function () {
 			this.first().click(); // Click on the first element
+			return this;
 		},
 		/*
 		* html(newHtml) - Sets OR returns the inner HTML
@@ -80,6 +82,7 @@
 			this.each(function (element) {	
 				element.innerHTML = newHtml; // Set the inner html given parameter
 			});
+			return this;
 		},
 		/*
 		* addClass(newClass) - Adds a given class to every selected element
@@ -90,6 +93,7 @@
 			this.each(function (element) { // Go to each element
 				element.classList.add(newClass); // Add the given class to the element
 			});
+			return this;
 		},
 		/*
 		* removeClass(oldClass) - Removes a given class to every selected element
@@ -100,6 +104,7 @@
 			this.each(function (element) { // Go to every selected element
 				element.classList.remove(oldClass); // Remove the given class
 			});
+			return this;
 		},
 		/*
 		* toggleClass(className) - Toggles a given class to every selected element
@@ -110,6 +115,7 @@
 			this.each(function (element) { // For each element
 				element.classList.toggle(className); // Toggle the class
 			});
+			return this;
 		},
 		/*
 		* hasClass(className) - Checks if the element has a given class
@@ -135,6 +141,7 @@
 			this.each(function (element) { // Otherwise, 
 				element.style[property] = newValue; // Set the new value
 			});
+			return this;
 		},
 		/*
 		* val(newValue) - Gets the value of the first selected element
@@ -161,6 +168,7 @@
 			this.each(function (element) {property
 				element.setAttribute(property, newValue); // Sets the property of every element
 			});
+			return this;
 		},
 		/*
 		* event(event, callback) - Sets a callback for an event
@@ -172,6 +180,7 @@
 			this.each(function (element) { // For every element
 				element.addEventListener(event, callback); // Sets the listener and passes the callback
 			});
+			return this;
 		},
 		/*
 		* onClick(callback) - Sets a click callback
