@@ -37,12 +37,10 @@
 		* @param fn is a function with two parameters: an element and a index number
 		*/
 		each: function (fn) {
-			if (this.selector != null) {
-			  try {
-			  	Array.from(this.selector).forEach(fn); // Assume is an NodeList
-			  } catch (error) {
-			  	fn(this.selector,0);
-			  }
+			try {
+				Array.from(this.selector).forEach(fn);
+			} catch (e) {
+				fn(this.selector,0);
 			}
 			return this;
 		},
