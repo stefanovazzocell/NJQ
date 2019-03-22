@@ -11,10 +11,10 @@ Probably, but you can check out for yourself by visiting [this page](https://ste
 A few versions are provided. Depending on what your needs are, you might prefer some compared to others.
 Here's a handy chart:
 
-| File                | ajax* |  size**  |
-| ------------------- |:-----:| -------- |
-| njq###.min.js       | yes   | 2.6 kB   |
-| njq_ajax_###.min.js | no    | 2.5 kB   |
+| File            | ajax* |  size**  |
+| --------------- |:-----:| -------- |
+| njq###.min.js   | yes   | 2.1 KB   |
+| njq###na.min.js | no    | 1.3 KB   |
 
 `* if you need any ajax request (ajax(), post(), and get()) use this version`
 
@@ -23,6 +23,7 @@ Here's a handy chart:
 ## How do I download it?
 You can download this program at the [releases](https://github.com/stefanovazzocell/NJQ/releases/) page on Github.
 
+**Warning:** Not recommended
 For the latest updates, features, and fixes you can experiment with the raw development version; just save [this](https://raw.githubusercontent.com/stefanovazzocell/NJQ/master/src/njq.js) file.
 
 ## Versions
