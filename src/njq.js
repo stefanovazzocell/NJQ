@@ -207,8 +207,8 @@
 		*/
 		get: function (url, data={}, onSuccess=()=>{}, onFail=()=>{}) {
 			var par = '';
-			if (!this.isEmptyObject(data)) { // If any data is passed
-				par = '?' + this.encodeDataForURI(data); // Add to par after encoding it
+			if (!this.emptyObj(data)) { // If any data is passed
+				par = '?' + this.encodeUri(data); // Add to par after encoding it
 			}
 			this.ajax(url + par, 'GET', {}, onSuccess, onFail); // Make ajax GET request
 		},
@@ -225,7 +225,7 @@
 		a*/
 		ajax: function (url, method='GET', data={}, onSuccess=()=>{}, onFail=()=>{console.error('NJQ Ajax Error');}, contentType='', isJson=false) {
 			const xhr = new XMLHttpRequest(); // Initialize a XMLHttpRequest
-			if (method == 'GET' && !this.isEmptyObject(data)) method='POST'; // Try to guess the method
+			if (method == 'GET' && !this.emptyObj(data)) method='POST'; // Try to guess the method
 			xhr.open(method, url); // Prepare the request - isJson
 			// Try to guess the content type header
 			if (contentType == '' && method == 'POST' && !isJson) contentType = 'application/x-www-form-urlencoded'; // "application/json"
@@ -240,18 +240,18 @@
 			if (data != {}) { // If there is any data to pass in the body
 				if (isJson) {
 					xhr.send(JSON.stringify(data)); // Send the encoded URI back (json mode)
-				} else xhr.send(this.encodeDataForURI(data)); // Send the encoded URI back
+				} else xhr.send(this.encodeUri(data)); // Send the encoded URI back
 			} else {
 				xhr.send(); // Else, just send the request
 			}
 		},
 		/*
-		* encodeDataForURI(data) - Encodes the data for URI
+		* encodeUri(data) - Encodes the data for URI
 		* 
 		* @param  data (optional) object containing the data to encode
 		* @return string with the data object encoded for URI
 		*/
-		encodeDataForURI: function (data={}) {
+		encodeUri: function (data={}) {
 			var out = [];
 			for(let key in data){ // Add all data in an array
 				out.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
@@ -259,12 +259,12 @@
 			return encodeURI(out.join('&')); // Return the value by joining it
 		},
 		/*
-		* isEmptyObject(obj) - Checks if an object is empty
+		* emptyObj(obj) - Checks if an object is empty
 		* 
 		* @param  obj object containing the data to check
 		* @return boolean true if is empty and false if has element
 		*/
-		isEmptyObject: function (obj) {
+		emptyObj: function (obj) {
 			// Checks if length 0 and is object
 			return obj.constructor === Object && Object.keys(obj).length === 0;
 		}
