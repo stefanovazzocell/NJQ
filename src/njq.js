@@ -199,7 +199,7 @@
 		* @param  onFail(xhr) (optional) function function called in case of failure
 		* @param  isJson (optional) bool true if there is the need to encode data as json, false otherwise
 		*/
-		post: function (url, data={}, onSuccess=function(){}, onFail=function(){console.error('NJQ POST Error');}, isJson=true) {
+		post: function (url, data={}, onSuccess=()=>{}, onFail=()=>{}, isJson=true) {
 			this.ajax(url, 'POST', data, onSuccess, onFail, '', isJson); // Make ajax POST request
 		},
 		/*
@@ -210,7 +210,7 @@
 		* @param  onSuccess(response,xhr) (optional) function called if success
 		* @param  onFail(xhr) (optional) function function called in case of failure
 		*/
-		get: function (url, data={}, onSuccess=function(){}, onFail=function(){console.error('NJQ POST Error');}) {
+		get: function (url, data={}, onSuccess=()=>{}, onFail=()=>{}) {
 			var par = '';
 			if (!this.isEmptyObject(data)) { // If any data is passed
 				par = '?' + this.encodeDataForURI(data); // Add to par after encoding it
@@ -228,7 +228,7 @@
 		* @param  contentType (optional) string specifies the content type header
 		* @param  isJson (optional) bool true if data is json, false otherwise
 		a*/
-		ajax: function (url, method='GET', data={}, onSuccess=function(){}, onFail=function(){console.error('NJQ Ajax Error');}, contentType='', isJson=false) {
+		ajax: function (url, method='GET', data={}, onSuccess=()=>{}, onFail=()=>{console.error('NJQ Ajax Error');}, contentType='', isJson=false) {
 			const xhr = new XMLHttpRequest(); // Initialize a XMLHttpRequest
 			if (method == 'GET' && !this.isEmptyObject(data)) method='POST'; // Try to guess the method
 			xhr.open(method, url); // Prepare the request - isJson
