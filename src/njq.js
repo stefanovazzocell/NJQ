@@ -23,12 +23,7 @@
 		*/
 		ready: function (callback) {
 			if(document.readyState === 'interactive' || document.readyState === 'complete') {
-				try {
-					callback(); // Try calling the callback
-				} catch(error) { // Otherwise log error
-					console.warn('$$.ready(callback) - callback throwed error:');
-					console.error(error);
-				}
+				callback(); // Callback
 			} else document.addEventListener('DOMContentLoaded', callback);
 		},
 		/*
