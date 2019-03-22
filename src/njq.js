@@ -11,8 +11,8 @@
 		if (!(this instanceof $$)) // If it's a new instance,
 			return new $$(selector); // initialize it with the given selector
 		if (typeof selector == 'string') { // If selector has string
-			this.selector = document.querySelectorAll(selector); // Attempt to find it
-		} else this.selector = selector; // Else, just assume it to be a valid obj
+			this.s = document.querySelectorAll(selector); // Attempt to find it
+		} else this.s = selector; // Else, just assume it to be a valid obj
 	};
 	window.$$ = $$;
 	$$.fn = $$.prototype = {
@@ -33,9 +33,9 @@
 		*/
 		each: function (fn) {
 			try {
-				Array.from(this.selector).forEach(fn);
+				Array.from(this.s).forEach(fn);
 			} catch (e) {
-				fn(this.selector,0);
+				fn(this.s,0);
 			}
 			return this;
 		},
@@ -45,7 +45,7 @@
 		* @return selector is the first selector in the list
 		*/
 		first: function () {
-			return (this.selector[0] || this.selector);
+			return (this.s[0] || this.s);
 		},
 		/*
 		* select() - Simulates an user click on the element
