@@ -7,7 +7,7 @@
 */
 
 (function(window,document,undefined){
-	var $$ = function(selector) {
+	const $$ = function(selector) {
 		if (!(this instanceof $$)) // If it's a new instance,
 			return new $$(selector); // initialize it with the given selector
 		if (typeof selector == 'string') { // If selector has string
@@ -37,12 +37,14 @@
 		* @param fn is a function with two parameters: an element and a index number
 		*/
 		each: function (fn) {
-			if (this.selector == null) return; // If null stop execution
-			try {
-				Array.from(this.selector).forEach(fn); // Assume is an NodeList
-			} catch (error) {
-				fn(this.selector,0);
+			if (this.selector != null) {
+			  try {
+			  	Array.from(this.selector).forEach(fn); // Assume is an NodeList
+			  } catch (error) {
+			  	fn(this.selector,0);
+			  }
 			}
+			return this;
 		},
 		/*
 		* log() - Prints every element that is currently selected on the console
@@ -230,7 +232,7 @@
 		* @param  isJson (optional) bool true if data is json, false otherwise
 		a*/
 		ajax: function (url, method='GET', data={}, onSuccess=function(){}, onFail=function(){console.error('NJQ Ajax Error');}, contentType='', isJson=false) {
-			var xhr = new XMLHttpRequest(); // Initialize a XMLHttpRequest
+			const xhr = new XMLHttpRequest(); // Initialize a XMLHttpRequest
 			if (method == 'GET' && !this.isEmptyObject(data)) method='POST'; // Try to guess the method
 			xhr.open(method, url); // Prepare the request - isJson
 			// Try to guess the content type header
@@ -259,7 +261,7 @@
 		*/
 		encodeDataForURI: function (data={}) {
 			var out = [];
-			for(var key in data){ // Add all data in an array
+			for(let key in data){ // Add all data in an array
 				out.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
 			}
 			return encodeURI(out.join('&')); // Return the value by joining it
