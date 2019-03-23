@@ -1,7 +1,7 @@
 'use strict';
 
 /*
-* NJQ (Version 0.2.1)
+* NJQ (Version 0.3.0)
 * by Stefano Vazzoler (stefanovazzocell@gmail.com)
 * https://stefanovazzoler.com/
 */

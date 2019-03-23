@@ -1,7 +1,7 @@
 'use strict';
 
 /*
-* NJQ (Version 0.2.1)
+* NJQ (Version 0.3.0)
 * by Stefano Vazzoler (stefanovazzocell@gmail.com)
 * https://stefanovazzoler.com/
 */
@@ -213,7 +213,7 @@
     * @param  contentType (optional) string specifies the content type header
     * @param  isJson (optional) bool true if data is json, false otherwise
     a*/
-    ajax: function (url, method='GET', data={}, onSuccess=()=>{}, onFail=()=>{console.error('NJQ Ajax Error');}, contentType='', isJson=false) {
+    ajax: function (url, method='GET', data={}, onSuccess=()=>{}, onFail=()=>{}, contentType='', isJson=false) {
       const xhr = new XMLHttpRequest(); // Initialize a XMLHttpRequest
       if (method == 'GET' && !this.emptyObj(data)) method='POST'; // Try to guess the method
       xhr.open(method, url); // Prepare the request - isJson
