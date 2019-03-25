@@ -1,0 +1,30 @@
+{
+  "name": "no_jq",
+  "version": "0.3.0",
+  "description": "A small JQuery replacement for simple apps running on modern browsers",
+  "main": "src/index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stefanovazzocell/NJQ.git"
+  },
+  "keywords": [
+    "njq",
+    "frontend",
+    "jquery"
+  ],
+  "author": "Stefano Vazzoler",
+  "license": "\tApache-2.0",
+  "bugs": {
+    "url": "https://github.com/stefanovazzocell/NJQ/issues"
+  },
+  "homepage": "https://github.com/stefanovazzocell/NJQ#readme",
+  "dependencies": {
+    "npm": "^6.9.0"
+  }
+}
