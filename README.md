@@ -21,6 +21,12 @@ Starting from version *0.3.0* the library is now available by <a href="https://g
 <script src="https://cdn.rkt.one/njq/030/njq_na.js" integrity="sha384-7VCCj2vaV/th3tgUZ+N9hL7cyYN8bCfsQ+gUXDnTtQrA0/h9cZuZ17SiKuBVDKw3" crossorigin="anonymous"></script>
 ```
 
+## NPM
+
+This library is available on NPM under the name of `no_jq`, you can read more on my [blog post](https://stefanovazzoler.com/njq-for-all/).
+
+You can get the **npm** [package](https://www.npmjs.com/package/no_jq) with this command: `npm i no_jq`.
+
 ## What version should I choose?
 A few versions are provided. Depending on what your needs are, you might prefer some compared to others.
 Here's a handy chart:
